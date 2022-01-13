@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Моя фильмотека</string>
+    <string name="director_label_text">Режиссер фильма:</string>
+    <string name="category_label_text">Категория фильма:</string>
 </resources>

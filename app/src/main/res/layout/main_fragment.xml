@@ -11,6 +11,7 @@
         android:id="@+id/poster"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:src="@drawable/no_poster"
         app:layout_constraintBottom_toTopOf="@id/nameMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
         android:id="@+id/nameMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/name_movie_size"
         app:layout_constraintBottom_toTopOf="@id/yearMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +35,7 @@
         android:id="@+id/ratingMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toTopOf="@id/yearMovie"
         app:layout_constraintEnd_toStartOf="@id/ratingMovieLabel"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -54,6 +57,7 @@
         android:id="@+id/yearMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="@id/directorMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,16 +68,17 @@
         android:id="@+id/directorMovieLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/director_label_text"
         app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
         app:layout_constraintEnd_toStartOf="@id/directorMovie"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yearMovie"
-        tools:text="Режиссер фильма: " />
+        app:layout_constraintTop_toBottomOf="@id/yearMovie" />
 
     <TextView
         android:id="@+id/directorMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/directorMovieLabel"
@@ -84,20 +89,42 @@
         android:id="@+id/categoryMovieLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/category_label_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/categoryMovie"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/directorMovie"
-        tools:text="Категория фильма: " />
+        app:layout_constraintTop_toBottomOf="@id/directorMovie" />
 
     <TextView
         android:id="@+id/categoryMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/categoryMovieLabel"
         app:layout_constraintTop_toBottomOf="@id/directorMovie"
         tools:text="Категория фильма по умолчанию" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/movieGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="poster, nameMovie, ratingMovie,
+        ratingMovieLabel, yearMovie, directorMovie, directorMovieLabel,
+        categoryMovie, categoryMovieLabel"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
