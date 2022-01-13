@@ -1,10 +1,10 @@
 package ru.kudesnik.mymovie.model.entities
 
 data class Movie(
-    val name: String,
-    val rating: Float = 0f,
-    val category: String,
-    val director: String = "Режиссер",
-    val year: Int,
+    val name: String = "Аватар",
+    val rating: Float = 7.9f,
+    val category: String = "Фантастика",
+    val director: String = "Джеймс Кемерон",
+    val year: Int = 2000,
     val poster: String = "Будет позже"
 )
