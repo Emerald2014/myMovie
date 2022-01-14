@@ -4,5 +4,6 @@ import ru.kudesnik.mymovie.model.entities.Movie
 
 interface Repository {
     fun getMoviesFromServer(): Movie
-    fun getMoviesFromLocalStorage(): Movie
+    fun getMoviesFromLocalStorageComedy(): List<Movie>
+    fun getMoviesFromLocalStorageAction(): List<Movie>
 }

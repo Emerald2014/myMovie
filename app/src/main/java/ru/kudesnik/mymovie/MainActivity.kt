@@ -1,7 +1,7 @@
 package ru.kudesnik.mymovie
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ru.kudesnik.mymovie.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

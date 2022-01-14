@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0FFFF"
+    tools:context=".ui.details.DetailsFragment">
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/no_poster"
+        app:layout_constraintBottom_toTopOf="@id/nameMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@drawable/poster_default" />
+
+
+    <TextView
+        android:id="@+id/nameMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/name_movie_size"
+        app:layout_constraintBottom_toTopOf="@id/yearMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/poster"
+        tools:text="Название фильма по умолчанию" />
+
+    <TextView
+        android:id="@+id/ratingMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toTopOf="@id/yearMovie"
+        app:layout_constraintEnd_toStartOf="@id/ratingMovieLabel"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameMovie"
+        tools:text="4.5" />
+
+    <ImageView
+        android:id="@+id/ratingMovieLabel"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/yellow_star"
+        app:layout_constraintBottom_toTopOf="@id/yearMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ratingMovie"
+        app:layout_constraintTop_toBottomOf="@id/nameMovie" />
+
+    <TextView
+        android:id="@+id/yearMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="@id/directorMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingMovie"
+        tools:text="Год фильма по умолчанию" />
+
+    <TextView
+        android:id="@+id/directorMovieLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/director_label_text"
+        app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
+        app:layout_constraintEnd_toStartOf="@id/directorMovie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearMovie" />
+
+    <TextView
+        android:id="@+id/directorMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/directorMovieLabel"
+        app:layout_constraintTop_toBottomOf="@id/yearMovie"
+        tools:text="Режиссер фильма по умолчанию" />
+
+    <TextView
+        android:id="@+id/categoryMovieLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_label_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/categoryMovie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/directorMovie" />
+
+    <TextView
+        android:id="@+id/categoryMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/categoryMovieLabel"
+        app:layout_constraintTop_toBottomOf="@id/directorMovie"
+        tools:text="Категория фильма по умолчанию" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/movieGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="poster, nameMovie, ratingMovie,
+        ratingMovieLabel, yearMovie, directorMovie, directorMovieLabel,
+        categoryMovie, categoryMovieLabel"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,13 +11,21 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun getLiveData(): LiveData<AppState> = liveData
 
-    fun getMovies() = getDataFromLocalSource()
+    fun getMovieFromLocalSourceComedy() = getDataFromLocalSource(true)
+    fun getMovieFromLocalSourceAction() = getDataFromLocalSource(false)
 
-    private fun getDataFromLocalSource() {
+    private fun getDataFromLocalSource(isComedy: Boolean) {
         liveData.value = AppState.Loading
         Thread {
             Thread.sleep(1000)
-            liveData.postValue(AppState.Success(repository.getMoviesFromLocalStorage()))
+            liveData.postValue(
+                if (isComedy) {
+                    AppState.Success(repository.getMoviesFromLocalStorageComedy())
+                } else {
+                    AppState.Success(repository.getMoviesFromLocalStorageAction())
+
+                }
+            )
         }.start()
     }
 }
