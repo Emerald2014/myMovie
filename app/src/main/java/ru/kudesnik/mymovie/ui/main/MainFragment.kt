@@ -65,26 +65,33 @@ class MainFragment : Fragment() {
                 R.id.popup_menu_movie_comedy -> {
                     changeMovieCategory = MovieCategory.COMEDY
                     viewModel.getMovieFromLocalSourceComedy()
+                    toolbar.subtitle = MovieCategory.COMEDY.nameMovie
+
                     true
                 }
                 R.id.popup_menu_movie_action -> {
                     changeMovieCategory = MovieCategory.ACTION
                     viewModel.getMovieFromLocalSourceAction()
+                    toolbar.subtitle = MovieCategory.ACTION.nameMovie
                     true
                 }
                 R.id.popup_menu_movie_fantastic -> {
                     changeMovieCategory = MovieCategory.FANTASTIC
-//                        viewModel.getMovieFromLocalSourceAction()
+//                        viewModel.getMovieFromLocalSourceFantastic()
+                    toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
+
                     true
                 }
 
                 else -> false
             }
         })
-
+/*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             popupMenu.setForceShowIcon(true)
         }
+
+ */
         popupMenuButton.setOnClickListener {
             popupMenu.show()
         }
