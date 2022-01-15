@@ -1,10 +1,12 @@
 package ru.kudesnik.mymovie.ui.main
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,37 +56,37 @@ class MainFragment : Fragment() {
 
     private fun changeMovieDataSet(view: View) = with(binding) {
         val popupMenuButton = mainFragmentFAB
-        val popupMenu: PopupMenu? = view?.let { PopupMenu(requireContext(), popupMenuButton) }
+        val popupMenu: PopupMenu = view?.let { PopupMenu(requireContext(), popupMenuButton) }
 
-        if (popupMenu != null) {
-            popupMenu
-                .inflate(R.menu.popup_menu)
-            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.popup_menu_movie_comedy -> {
-                        changeMovieCategory = MovieCategory.COMEDY
-                        viewModel.getMovieFromLocalSourceComedy()
-                        true
-                    }
-                    R.id.popup_menu_movie_action -> {
-                        changeMovieCategory = MovieCategory.ACTION
-                        viewModel.getMovieFromLocalSourceAction()
-                        true
-                    }
-                    R.id.popup_menu_movie_fantastic -> {
-                        changeMovieCategory = MovieCategory.FANTASTIC
-//                        viewModel.getMovieFromLocalSourceAction()
-                        true
-                    }
-
-                    else -> false
+        popupMenu
+            .inflate(R.menu.popup_menu)
+        popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.popup_menu_movie_comedy -> {
+                    changeMovieCategory = MovieCategory.COMEDY
+                    viewModel.getMovieFromLocalSourceComedy()
+                    true
                 }
-            })
+                R.id.popup_menu_movie_action -> {
+                    changeMovieCategory = MovieCategory.ACTION
+                    viewModel.getMovieFromLocalSourceAction()
+                    true
+                }
+                R.id.popup_menu_movie_fantastic -> {
+                    changeMovieCategory = MovieCategory.FANTASTIC
+//                        viewModel.getMovieFromLocalSourceAction()
+                    true
+                }
+
+                else -> false
+            }
+        })
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true)
         }
         popupMenuButton.setOnClickListener {
-            if (popupMenu != null) {
-                popupMenu.show()
-            }
+            popupMenu.show()
         }
     }
 
