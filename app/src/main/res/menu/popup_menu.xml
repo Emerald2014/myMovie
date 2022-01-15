@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<item
-    android:id="@+id/popup_menu_movie_comedy"
-    android:icon="@drawable/ic_comedy"
-    app:showAsAction="ifRoom"
-    android:iconTintMode="src_in"
-
-    android:title="@string/movie_category_text_comedy"/>
+    <item
+        android:id="@+id/popup_menu_movie_comedy"
+        android:icon="@drawable/ic_comedy"
+        android:title="@string/movie_category_text_comedy"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/popup_menu_movie_action"
         android:icon="@drawable/ic_action"
-        android:iconTintMode="multiply"
-
-        app:showAsAction="always"
-        android:title="Боевик"/>
+        android:title="@string/movie_category_text_action"
+        app:showAsAction="always" />
     <item
         android:id="@+id/popup_menu_movie_fantastic"
         android:icon="@drawable/ic_fantastic"
-        android:iconTintMode="add"
-
-        app:showAsAction="always"
-        android:title="Фантастика"/>
+        android:title="@string/movie_category_text_fantastic"
+        app:showAsAction="always" />
 </menu>

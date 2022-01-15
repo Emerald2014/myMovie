@@ -7,4 +7,6 @@
     <string name="error">Ошибка</string>
     <string name="reload">Перезагрузить</string>
     <string name="movie_category_text_comedy">Комедия</string>
+    <string name="movie_category_text_action">Боевик</string>
+    <string name="movie_category_text_fantastic">Фантастика</string>
 </resources>

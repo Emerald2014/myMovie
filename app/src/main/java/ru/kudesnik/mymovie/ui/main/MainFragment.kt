@@ -1,12 +1,10 @@
 package ru.kudesnik.mymovie.ui.main
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,7 +23,6 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var adapter: MainFragmentAdapter? = null
-    private var isDataSetComedy: Boolean = true
 
     private lateinit var changeMovieCategory: MovieCategory
 
@@ -33,7 +30,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +39,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             mainFragmentRecyclerView.adapter = adapter
-            changeMovieDataSet(view)
+            changeMovieDataSet()
 //            mainFragmentFAB.setOnClickListener { changeMovieDataSet() }
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieFromLocalSourceComedy()
@@ -54,13 +51,13 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun changeMovieDataSet(view: View) = with(binding) {
+    private fun changeMovieDataSet() = with(binding) {
         val popupMenuButton = mainFragmentFAB
-        val popupMenu: PopupMenu = view?.let { PopupMenu(requireContext(), popupMenuButton) }
+        val popupMenu = PopupMenu(requireContext(), popupMenuButton)
 
         popupMenu
             .inflate(R.menu.popup_menu)
-        popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+        popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.popup_menu_movie_comedy -> {
                     changeMovieCategory = MovieCategory.COMEDY
@@ -85,7 +82,7 @@ class MainFragment : Fragment() {
 
                 else -> false
             }
-        })
+        }
 /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             popupMenu.setForceShowIcon(true)
