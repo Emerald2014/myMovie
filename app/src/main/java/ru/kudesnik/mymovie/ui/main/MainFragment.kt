@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -11,6 +12,7 @@ import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.MainFragmentBinding
 import ru.kudesnik.mymovie.model.AppState
 import ru.kudesnik.mymovie.model.entities.Movie
+import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.MainFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
 
@@ -22,6 +24,8 @@ class MainFragment : Fragment() {
 
     private var adapter: MainFragmentAdapter? = null
     private var isDataSetComedy: Boolean = true
+
+    private lateinit var changeMovieCategory: MovieCategory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +40,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             mainFragmentRecyclerView.adapter = adapter
-            mainFragmentFAB.setOnClickListener { changeWeatherDataSet() }
+            changeMovieDataSet(view)
+//            mainFragmentFAB.setOnClickListener { changeMovieDataSet() }
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
             viewModel.getMovieFromLocalSourceComedy()
         }
@@ -47,15 +52,40 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun changeWeatherDataSet() = with(binding) {
-        if (isDataSetComedy) {
-            viewModel.getMovieFromLocalSourceAction()
-            mainFragmentFAB.setImageResource(R.drawable.ic_action)
-        } else {
-            viewModel.getMovieFromLocalSourceComedy()
-            mainFragmentFAB.setImageResource(R.drawable.ic_comedy)
+    private fun changeMovieDataSet(view: View) = with(binding) {
+        val popupMenuButton = mainFragmentFAB
+        val popupMenu: PopupMenu? = view?.let { PopupMenu(requireContext(), popupMenuButton) }
+
+        if (popupMenu != null) {
+            popupMenu
+                .inflate(R.menu.popup_menu)
+            popupMenu.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.popup_menu_movie_comedy -> {
+                        changeMovieCategory = MovieCategory.COMEDY
+                        viewModel.getMovieFromLocalSourceComedy()
+                        true
+                    }
+                    R.id.popup_menu_movie_action -> {
+                        changeMovieCategory = MovieCategory.ACTION
+                        viewModel.getMovieFromLocalSourceAction()
+                        true
+                    }
+                    R.id.popup_menu_movie_fantastic -> {
+                        changeMovieCategory = MovieCategory.FANTASTIC
+//                        viewModel.getMovieFromLocalSourceAction()
+                        true
+                    }
+
+                    else -> false
+                }
+            })
         }
-        isDataSetComedy = !isDataSetComedy
+        popupMenuButton.setOnClickListener {
+            if (popupMenu != null) {
+                popupMenu.show()
+            }
+        }
     }
 
     private fun renderData(appState: AppState) = with(binding) {
