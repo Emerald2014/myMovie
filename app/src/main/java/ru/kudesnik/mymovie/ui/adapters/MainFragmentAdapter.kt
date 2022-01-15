@@ -39,6 +39,9 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: Movie) = with(binding) {
             mainFragmentRecyclerItemTextView.text = movie.name
+            mainFragmentRecyclerItemDirector.text = movie.director
+            mainFragmentRecyclerItemYear.text = movie.year.toString()
+            mainFragmentRecyclerItemRating.text = movie.rating.toString()
             root.setOnClickListener { itemClickListener.onItemViewClick(movie) }
         }
     }
