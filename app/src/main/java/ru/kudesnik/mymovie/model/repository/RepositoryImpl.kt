@@ -1,12 +1,12 @@
 package ru.kudesnik.mymovie.model.repository
 
-import ru.kudesnik.mymovie.model.entities.Movie
-import ru.kudesnik.mymovie.model.entities.getMoviesCategoryAction
-import ru.kudesnik.mymovie.model.entities.getMoviesCategoryComedy
+import ru.kudesnik.mymovie.model.entities.*
 
 class RepositoryImpl : Repository {
     override fun getMoviesFromServer() = Movie()
 
     override fun getMoviesFromLocalStorageComedy() = getMoviesCategoryComedy()
     override fun getMoviesFromLocalStorageAction() = getMoviesCategoryAction()
+
+    override fun getMovieCategoryFromLocalStorage()= getMovieCategory()
 }
