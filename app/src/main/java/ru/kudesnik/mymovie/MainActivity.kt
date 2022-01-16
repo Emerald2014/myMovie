@@ -18,30 +18,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_fragment)
 
-        val recyclerView: RecyclerView = findViewById(R.id.mainFragmentRV)
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerView.adapter = TestAdapter(getMovieCategory())
-    }
-
-    private fun fillList(): List<String> {
-        val data = mutableListOf<String>()
-        (0..30).forEach { i -> data.add("$i element") }
-        return data
-    }
-}
-
-
-
-        /*
-setContentView(R.layout.main_activity)
+        setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, TestFragmentRV())
+                .replace(R.id.container, MainFragment())
                 .commitNow()
         }
+
     }
 }
 
- */
+
+/*
+setContentView(R.layout.main_fragment)
+
+val recyclerView: RecyclerView = findViewById(R.id.mainFragmentRV)
+recyclerView.layoutManager = GridLayoutManager(this, 2)
+recyclerView.adapter = MainFragmentAdapter(getMovieCategory())
+
+
+}
+
+*/

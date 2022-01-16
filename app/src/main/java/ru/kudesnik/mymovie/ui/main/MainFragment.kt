@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.MainFragmentBinding
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.model.entities.getMovieCategory
 import ru.kudesnik.mymovie.ui.adapters.MainFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
 import ru.kudesnik.mymovie.ui.list.ListFragment
@@ -27,10 +30,14 @@ class MainFragment : Fragment() {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
-/*
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
+        val recyclerView: RecyclerView = view.findViewById(R.id.mainFragmentRV)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.adapter = MainFragmentAdapter(getMovieCategory())
+    }
+       /* with(binding) {
             mainFragmentRV
                 .adapter = adapter
 
