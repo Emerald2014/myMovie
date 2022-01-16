@@ -37,6 +37,7 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
             startFragmentImageCategory.setImageResource(movieCategory.icon)
             root.setOnClickListener { itemClickListener.onItemViewClick(movieCategory) }
 
+
         }
     }
 

@@ -15,11 +15,10 @@ import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
-import ru.kudesnik.mymovie.ui.main.MainViewModel
 
 
 class ListFragment : Fragment() {
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: ListViewModel by viewModel()
     private var _binding: ListFragmentBinding? = null
     private val binding get() = _binding!!
 

@@ -12,8 +12,8 @@ enum class MovieCategory(val nameMovie: String, val icon: Int) : Parcelable {
     FANTASTIC("Фантастика", R.drawable.ic_fantastic)
 }
 
-/*
-fun getMovieCategory(): List<String> {
+
+fun getMovieCategoryString(): List<String> {
 
     return listOf(
         MovieCategory.COMEDY.nameMovie,
@@ -23,7 +23,7 @@ fun getMovieCategory(): List<String> {
         )
 }
 
- */
+
 fun getMovieCategory(): List<MovieCategory> {
     return listOf(
         MovieCategory.COMEDY,

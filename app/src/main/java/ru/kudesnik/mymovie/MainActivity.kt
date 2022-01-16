@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.model.entities.getMovieCategory
+import ru.kudesnik.mymovie.model.entities.getMovieCategoryString
 import ru.kudesnik.mymovie.ui.adapters.MainFragmentAdapter
 import ru.kudesnik.mymovie.ui.adapters.TestAdapter
 import ru.kudesnik.mymovie.ui.list.ListFragment
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.mainFragmentRV)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerView.adapter = TestAdapter(fillList())
+        recyclerView.adapter = TestAdapter(getMovieCategory())
     }
 
     private fun fillList(): List<String> {

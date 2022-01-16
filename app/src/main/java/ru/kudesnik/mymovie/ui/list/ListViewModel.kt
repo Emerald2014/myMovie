@@ -1,4 +1,4 @@
-package ru.kudesnik.mymovie.ui.main
+package ru.kudesnik.mymovie.ui.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import ru.kudesnik.mymovie.model.AppState
 import ru.kudesnik.mymovie.model.repository.Repository
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class ListViewModel(private val repository: Repository) : ViewModel() {
     private val liveData = MutableLiveData<AppState>()
 
     fun getLiveData(): LiveData<AppState> = liveData
