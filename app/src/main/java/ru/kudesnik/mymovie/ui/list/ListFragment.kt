@@ -38,7 +38,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            mainFragmentRecyclerView.adapter = adapter
+            listFragmentRecyclerView.adapter = adapter
             changeMovieDataSet()
 //            mainFragmentFAB.setOnClickListener { changeMovieDataSet() }
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
@@ -114,7 +114,7 @@ class ListFragment : Fragment() {
                 }).apply {
                     setMovie(appState.movieData)
                 }
-                mainFragmentRecyclerView.adapter = adapter
+                listFragmentRecyclerView.adapter = adapter
             }
             is AppState.Loading -> {
                 progressBar.visibility = View.VISIBLE

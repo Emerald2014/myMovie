@@ -7,19 +7,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.NonDisposableHandle
-import kotlinx.coroutines.NonDisposableHandle.parent
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.MainFragmentRecyclerItemBinding
 import ru.kudesnik.mymovie.model.entities.MovieCategory
-import ru.kudesnik.mymovie.ui.list.ListFragment
-import ru.kudesnik.mymovie.ui.main.MainFragment
 
-//class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemViewClickListener) :
-//    RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
+class MainFragmentAdapter(private val itemClickListener: OnMainViewClickListener) :
+    RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
-class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerView
-.Adapter<MainFragmentAdapter.MainViewHolder>() {
+//class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerView
+//.Adapter<MainFragmentAdapter.MainViewHolder>() {
+
+    var onItemViewClickListener: OnMainViewClickListener? = null
 
     private lateinit var binding: MainFragmentRecyclerItemBinding
     private var movieCategoryData: List<MovieCategory> = listOf()
@@ -31,17 +29,17 @@ class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerVie
     }
 
    inner  class MainViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
-       val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
+//       val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
        val icon = itemView.findViewById<ImageView>(R.id.start_fragment_image_category)
-//        fun bind(movieCategory: MovieCategory) = with(binding) {
-//            val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
+        fun bind(movieCategory: MovieCategory) = with(binding) {
+            val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
 
-//            startFragmentTextCategory.text = movieCategory.nameMovie
-//            startFragmentImageCategory.setImageResource(movieCategory.icon)
-//            root.setOnClickListener { itemClickListener.onItemViewClick(movieCategory) }
+            startFragmentTextCategory.text = movieCategory.nameMovie
+            startFragmentImageCategory.setImageResource(movieCategory.icon)
+            root.setOnClickListener { itemClickListener.onItemViewClick(movieCategory) }
 
 
-//        }
+        }
     }
 
     override fun onCreateViewHolder(
@@ -60,8 +58,14 @@ class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.largeTextView.text = names[position].nameMovie
-        holder.icon.setImageResource(names[position].icon)
+        holder.bind(movieCategoryData[position])
+
+//        holder.largeTextView.text = names[position].nameMovie
+//        holder.icon.setImageResource(names[position].icon)
+//
+//        holder.itemView.setOnClickListener {
+//            onItemViewClickListener?.onItemViewClick(names[position])
+        }
 //        startFragmentTextCategory.text = names[position].nameMovie
 //        startFragmentImageCategory.setImageResource(names[position].icon)
 
@@ -70,10 +74,13 @@ class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerVie
 //        startFragmentImageCategory.setImageResource(movieCategory.icon)
 
 //        holder.bind(movieCategoryData[position])
+//    }
+
+    override fun getItemCount() = movieCategoryData.size
+
+    interface OnMainViewClickListener {
+        fun onItemViewClick(movieCategory: MovieCategory)
     }
-
-    override fun getItemCount() = names.size
-
 
 }
 

@@ -14,6 +14,10 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     fun getMovieFromLocalSourceComedy() = getDataFromLocalSource(true)
     fun getMovieFromLocalSourceAction() = getDataFromLocalSource(false)
 
+    fun getMovieCategoryFromLocalSource() {
+
+    }
+
     private fun getDataFromLocalSource(isComedy: Boolean) {
         liveData.value = AppState.Loading
         Thread {
