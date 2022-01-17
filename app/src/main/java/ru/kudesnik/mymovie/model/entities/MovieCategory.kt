@@ -1,6 +1,7 @@
 package ru.kudesnik.mymovie.model.entities
 
 import android.os.Parcelable
+import android.widget.Toast
 import kotlinx.parcelize.Parcelize
 import ru.kudesnik.mymovie.R
 

@@ -3,18 +3,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/design_default_color_secondary_variant"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MainFragment">
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/ll_comedy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/start_fragment_image_category_comedy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:maxHeight="200dp"
+            android:src="@drawable/ic_comedy" />
+
+        <TextView
+            android:id="@+id/start_fragment_text_category_comedy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/movie_category_text_comedy"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/ll_action"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/start_fragment_image_category_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:maxHeight="200dp"
+            android:src="@drawable/ic_action" />
+
+        <TextView
+            android:id="@+id/start_fragment_text_category_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/movie_category_text_action"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/ll_fantastic"
+        app:layout_constraintTop_toBottomOf="@id/ll_comedy"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/start_fragment_image_category_fantastic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:maxHeight="200dp"
+            android:src="@drawable/ic_fantastic" />
+
+        <TextView
+            android:id="@+id/start_fragment_text_category_fantastic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/movie_category_text_fantastic"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+<!--
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainFragmentRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/design_default_color_error"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/testText2">
+
 
 
     </androidx.recyclerview.widget.RecyclerView>
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>

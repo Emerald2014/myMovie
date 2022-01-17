@@ -137,11 +137,9 @@ class ListFragment : Fragment() {
     }
 
     companion object {
+       const val BUNDLE_EXTRA_COMEDY="COMEDY"
         const val BUNDLE_EXTRA = "movie"
 
-        fun newInstance(bundle: Bundle) :ListFragment{
-            val fragment = ListFragment()
-            fragment.arguments = bundle
-            return fragment
-        }}
+        fun newInstance(bundle: Bundle) = ListFragment()
+    }
 }

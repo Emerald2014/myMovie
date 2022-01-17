@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.MainFragmentRecyclerItemBinding
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.ui.main.MainFragment
 
-class MainFragmentAdapter(private val itemClickListener: OnMainViewClickListener) :
+class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemViewClickListener) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
 //class MainFragmentAdapter (private val names: List<MovieCategory>) : RecyclerView
@@ -24,21 +26,24 @@ class MainFragmentAdapter(private val itemClickListener: OnMainViewClickListener
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMovieCategory(data: List<MovieCategory>) {
-        movieCategoryData = data
+               movieCategoryData = data
         notifyDataSetChanged()
+
     }
 
    inner  class MainViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
 //       val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
-       val icon = itemView.findViewById<ImageView>(R.id.start_fragment_image_category)
+//       val icon = itemView.findViewById<ImageView>(R.id.start_fragment_image_category)
         fun bind(movieCategory: MovieCategory) = with(binding) {
-            val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
-
             startFragmentTextCategory.text = movieCategory.nameMovie
             startFragmentImageCategory.setImageResource(movieCategory.icon)
             root.setOnClickListener { itemClickListener.onItemViewClick(movieCategory) }
 
-
+//            itemView.setOnClickListener {
+//                Toast.makeText(
+//                    itemView.context, "Приветище", Toast.LENGTH_SHORT
+//                ).show()
+//            }
         }
     }
 
@@ -58,6 +63,8 @@ class MainFragmentAdapter(private val itemClickListener: OnMainViewClickListener
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+//        holder.largeTextView.text = movieCategoryData[position].nameMovie
+//        holder.icon.setImageResource(movieCategoryData[position].icon)
         holder.bind(movieCategoryData[position])
 
 //        holder.largeTextView.text = names[position].nameMovie

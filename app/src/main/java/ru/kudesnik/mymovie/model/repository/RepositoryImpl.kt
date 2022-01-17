@@ -8,5 +8,5 @@ class RepositoryImpl : Repository {
     override fun getMoviesFromLocalStorageComedy() = getMoviesCategoryComedy()
     override fun getMoviesFromLocalStorageAction() = getMoviesCategoryAction()
 
-    override fun getMovieCategoryFromLocalStorage()= getMovieCategory()
+    override fun getMovieCategoryFromLocalStorage() = getMovieCategory()
 }
