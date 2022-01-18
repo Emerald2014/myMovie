@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/ABToolbar"
@@ -41,7 +41,7 @@
         android:layout_marginEnd="@dimen/margin_vertical"
         android:layout_marginBottom="@dimen/margin_vertical"
         android:contentDescription="@string/change_cities_list"
-        android:src="@drawable/ic_comedy"
+        android:src="@drawable/ic_category"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="55dp"

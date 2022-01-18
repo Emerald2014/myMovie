@@ -36,3 +36,22 @@ fun getMoviesCategoryAction(): List<Movie> {
         Movie("Боевик 4", 8.1f, "Боевик", "Режиссер 1", 2001),
     )
 }
+
+fun getMoviesCategoryFantastic(): List<Movie> {
+    return listOf(
+        Movie("Фантастика 1", 8.1f, MovieCategory.FANTASTIC.nameMovie, "Режиссер 1", 2001),
+        Movie("Фантастика 2", 8.1f, MovieCategory.FANTASTIC.nameMovie, "Режиссер 1", 2001),
+        Movie("Фантастика 3", 8.1f, MovieCategory.FANTASTIC.nameMovie, "Режиссер 1", 2001),
+        Movie("Фантастика 4", 8.1f, MovieCategory.FANTASTIC.nameMovie, "Режиссер 1", 2001),
+    )
+}
+
+fun getMoviesCategoryMult(): List<Movie> {
+    return listOf(
+        Movie("Мультфильм 1", 8.1f, MovieCategory.MULT.nameMovie, "Режиссер 1", 2001),
+        Movie("Мультфильм 2", 8.1f, MovieCategory.MULT.nameMovie, "Режиссер 1", 2001),
+        Movie("Мультфильм 3", 8.1f, MovieCategory.MULT.nameMovie, "Режиссер 1", 2001),
+        Movie("Мультфильм 5", 6.2f, MovieCategory.MULT.nameMovie, "Режиссер 6", 1986),
+        Movie("Мультфильм 4", 8.1f, MovieCategory.MULT.nameMovie, "Режиссер 1", 2001),
+    )
+}

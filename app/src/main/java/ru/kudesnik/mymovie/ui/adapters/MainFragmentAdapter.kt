@@ -26,13 +26,13 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMovieCategory(data: List<MovieCategory>) {
-               movieCategoryData = data
+        movieCategoryData = data
         notifyDataSetChanged()
 
     }
 
-   inner  class MainViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
-//       val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
+    inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        //       val largeTextView: TextView = itemView.findViewById(R.id.start_fragment_text_category)
 //       val icon = itemView.findViewById<ImageView>(R.id.start_fragment_image_category)
         fun bind(movieCategory: MovieCategory) = with(binding) {
             startFragmentTextCategory.text = movieCategory.nameMovie
@@ -72,7 +72,7 @@ class MainFragmentAdapter(private val itemClickListener: MainFragment.OnItemView
 //
 //        holder.itemView.setOnClickListener {
 //            onItemViewClickListener?.onItemViewClick(names[position])
-        }
+    }
 //        startFragmentTextCategory.text = names[position].nameMovie
 //        startFragmentImageCategory.setImageResource(names[position].icon)
 

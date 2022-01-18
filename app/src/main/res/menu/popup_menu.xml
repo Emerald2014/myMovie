@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_fantastic"
         android:title="@string/movie_category_text_fantastic"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/popup_menu_movie_mult"
+        android:icon="@drawable/ic_mult"
+        android:title="@string/movie_category_text_mult"
+        app:showAsAction="always" />
 </menu>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.kudesnik.mymovie.model.AppState
+import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.model.repository.Repository
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
@@ -11,23 +12,19 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
 
     fun getLiveData(): LiveData<AppState> = liveData
 
-    fun getMovieFromLocalSourceComedy() = getDataFromLocalSource(true)
-    fun getMovieFromLocalSourceAction() = getDataFromLocalSource(false)
+    fun getMovieFromLocalSource(movieCategory: MovieCategory) =
+        getDataFromLocalSource(movieCategory)
 
-    fun getMovieCategoryFromLocalSource() {
-
-    }
-
-    private fun getDataFromLocalSource(isComedy: Boolean) {
+    private fun getDataFromLocalSource(movieCategory: MovieCategory) {
         liveData.value = AppState.Loading
         Thread {
             Thread.sleep(1000)
             liveData.postValue(
-                if (isComedy) {
-                    AppState.Success(repository.getMoviesFromLocalStorageComedy())
-                } else {
-                    AppState.Success(repository.getMoviesFromLocalStorageAction())
-
+                when (movieCategory) {
+                    MovieCategory.MULT -> AppState.Success(repository.getMoviesFromLocalStorageMult())
+                    MovieCategory.ACTION -> AppState.Success(repository.getMoviesFromLocalStorageAction())
+                    MovieCategory.COMEDY -> AppState.Success(repository.getMoviesFromLocalStorageComedy())
+                    MovieCategory.FANTASTIC -> AppState.Success(repository.getMoviesFromLocalStorageFantastic())
                 }
             )
         }.start()

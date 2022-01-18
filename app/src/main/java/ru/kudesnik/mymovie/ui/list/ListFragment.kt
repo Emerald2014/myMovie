@@ -26,6 +26,7 @@ class ListFragment : Fragment() {
 
     private lateinit var changeMovieCategory: MovieCategory
 
+    private lateinit var movieCat: MovieCategory
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,12 +38,34 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
         with(binding) {
             listFragmentRecyclerView.adapter = adapter
             changeMovieDataSet()
-//            mainFragmentFAB.setOnClickListener { changeMovieDataSet() }
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-            viewModel.getMovieFromLocalSourceComedy()
+
+            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
+                when (it) {
+                    MovieCategory.COMEDY -> {
+                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
+                        toolbar.subtitle = MovieCategory.COMEDY.nameMovie
+                    }
+                    MovieCategory.ACTION -> {
+                        toolbar.subtitle = MovieCategory.ACTION.nameMovie
+                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
+                    }
+                    MovieCategory.FANTASTIC -> {
+                        toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
+                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
+                    }
+                    MovieCategory.MULT -> {
+                        toolbar.subtitle = MovieCategory.MULT.nameMovie
+                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
+                    }
+                }
+            }
         }
     }
 
@@ -61,34 +84,36 @@ class ListFragment : Fragment() {
             when (it.itemId) {
                 R.id.popup_menu_movie_comedy -> {
                     changeMovieCategory = MovieCategory.COMEDY
-                    viewModel.getMovieFromLocalSourceComedy()
+                    viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
                     toolbar.subtitle = MovieCategory.COMEDY.nameMovie
-
                     true
                 }
                 R.id.popup_menu_movie_action -> {
                     changeMovieCategory = MovieCategory.ACTION
-                    viewModel.getMovieFromLocalSourceAction()
+                    viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
                     toolbar.subtitle = MovieCategory.ACTION.nameMovie
                     true
                 }
                 R.id.popup_menu_movie_fantastic -> {
                     changeMovieCategory = MovieCategory.FANTASTIC
-//                        viewModel.getMovieFromLocalSourceFantastic()
+                    viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
                     toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
-
                     true
                 }
-
+                R.id.popup_menu_movie_mult -> {
+                    changeMovieCategory = MovieCategory.MULT
+                    viewModel.getMovieFromLocalSource(MovieCategory.MULT)
+                    toolbar.subtitle = MovieCategory.MULT.nameMovie
+                    true
+                }
                 else -> false
             }
         }
-/*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            popupMenu.setForceShowIcon(true)
-        }
 
- */
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+//            popupMenu.setForceShowIcon(true)
+//        }
+
         popupMenuButton.setOnClickListener {
             popupMenu.show()
         }
@@ -126,8 +151,14 @@ class ListFragment : Fragment() {
                         binding.mainFragmentFAB, getString(R.string.error),
                         Snackbar.LENGTH_INDEFINITE
                     )
-                    .setAction(getString(R.string.reload)) { viewModel.getMovieFromLocalSourceComedy() }
+                    .setAction(getString(R.string.reload)) {
+                        viewModel.getMovieFromLocalSource(
+                            MovieCategory.COMEDY
+                        )
+                    }
                     .show()
+            }
+            else -> {
             }
         }
     }
@@ -137,9 +168,12 @@ class ListFragment : Fragment() {
     }
 
     companion object {
-       const val BUNDLE_EXTRA_COMEDY="COMEDY"
-        const val BUNDLE_EXTRA = "movie"
+        const val BUNDLE_EXTRA = "movieCat"
 
-        fun newInstance(bundle: Bundle) = ListFragment()
+        fun newInstance(bundle: Bundle): ListFragment {
+            val fragment = ListFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
