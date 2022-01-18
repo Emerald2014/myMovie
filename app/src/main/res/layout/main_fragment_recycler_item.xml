@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple_200"
+    android:orientation="vertical"
+    app:layout_constraintVertical_chainStyle="packed">
+
+    <ImageView
+        android:id="@+id/start_fragment_image_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:maxHeight="200dp"
+        android:src="@drawable/ic_comedy" />
+
+    <TextView
+        android:id="@+id/start_fragment_text_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="@string/movie_category_text_action"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+</LinearLayout>

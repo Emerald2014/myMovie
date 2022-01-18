@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemContainer"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    app:layout_constraintHorizontal_bias="1.0"
+
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/mainFragmentRecyclerItemLLPoster"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/no_poster"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerItemLLView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/mainFragmentRecyclerItemDescription"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerItemLLView"
+        app:layout_constraintEnd_toStartOf="@id/mainFragmentRecyclerItemLLRating"
+        app:layout_constraintStart_toEndOf="@id/mainFragmentRecyclerItemLLPoster"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/mainFragmentRecyclerItemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Это очень длинное название фильма, чтобы оно не уместилось Это очень длинное название фильма, чтобы оно не уместилось на экране" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Режиссёр: " />
+
+            <TextView
+                android:id="@+id/mainFragmentRecyclerItemDirector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Режиссёр 1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Год: " />
+
+            <TextView
+                android:id="@+id/mainFragmentRecyclerItemYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2000" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainFragmentRecyclerItemLLRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/yellow_star" />
+
+        <TextView
+            android:id="@+id/mainFragmentRecyclerItemRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            tools:text="4,5" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/mainFragmentRecyclerItemLLView"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainFragmentRecyclerItemDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

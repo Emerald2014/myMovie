@@ -2,4 +2,12 @@
     <string name="app_name">Моя фильмотека</string>
     <string name="director_label_text">Режиссер фильма:</string>
     <string name="category_label_text">Категория фильма:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="change_cities_list">Выбрать жанр фильма</string>
+    <string name="error">Ошибка</string>
+    <string name="reload">Перезагрузить</string>
+    <string name="movie_category_text_comedy">Комедия</string>
+    <string name="movie_category_text_action">Боевик</string>
+    <string name="movie_category_text_fantastic">Фантастика</string>
+    <string name="movie_category_text_mult">Мультфильм</string>
 </resources>
