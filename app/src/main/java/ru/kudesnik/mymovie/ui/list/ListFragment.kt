@@ -146,7 +146,16 @@ class ListFragment : Fragment() {
             }
             is AppState.Error -> {
                 progressBar.visibility = View.GONE
-                Snackbar
+                listFragmentRootView.showSnackBar(
+                    getString(R.string.error),
+                    getString(R.string.reload),
+                    {
+                        viewModel.getMovieFromLocalSource(
+                            MovieCategory.COMEDY
+                        )
+                    })
+
+                /*Snackbar
                     .make(
                         binding.mainFragmentFAB, getString(R.string.error),
                         Snackbar.LENGTH_INDEFINITE
@@ -156,7 +165,7 @@ class ListFragment : Fragment() {
                             MovieCategory.COMEDY
                         )
                     }
-                    .show()
+                    .show()*/
             }
             else -> {
             }
@@ -175,5 +184,14 @@ class ListFragment : Fragment() {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    private fun View.showSnackBar(
+        text: String,
+        actionText: String,
+        action: (View) -> Unit,
+        length: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
+        Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 }
