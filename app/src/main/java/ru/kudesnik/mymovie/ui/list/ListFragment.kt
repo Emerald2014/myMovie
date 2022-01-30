@@ -49,20 +49,23 @@ class ListFragment : Fragment() {
             arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
                 when (it) {
                     MovieCategory.COMEDY -> {
-                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
+                        viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie)
+//                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
                         toolbar.subtitle = MovieCategory.COMEDY.nameMovie
                     }
                     MovieCategory.ACTION -> {
                         toolbar.subtitle = MovieCategory.ACTION.nameMovie
-                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
+                        viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie)
+//                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
                     }
                     MovieCategory.FANTASTIC -> {
+                        viewModel.getMovieListFromServer(MovieCategory.FANTASTIC.nameMovie)
                         toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
-                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
+//                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
                     }
                     MovieCategory.MULT -> {
                         toolbar.subtitle = MovieCategory.MULT.nameMovie
-                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
+//                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
                     }
                 }
             }

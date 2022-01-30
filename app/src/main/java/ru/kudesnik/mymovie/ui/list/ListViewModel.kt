@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.kudesnik.mymovie.model.AppState
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.model.entities.rest_entities.MovieListKP
 import ru.kudesnik.mymovie.model.repository.Repository
 
 class ListViewModel(private val repository: Repository) : ViewModel() {
@@ -14,6 +15,14 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
 
     fun getMovieFromLocalSource(movieCategory: MovieCategory) =
         getDataFromLocalSource(movieCategory)
+
+    fun getMovieListFromServer(genres:String) {
+        liveData.value = AppState.Loading
+        Thread{
+            Thread.sleep(1000)
+            liveData.postValue(AppState.Success(repository.getMovieListFromServer(genres)))
+        }.start()
+    }
 
     private fun getDataFromLocalSource(movieCategory: MovieCategory) {
         liveData.value = AppState.Loading
