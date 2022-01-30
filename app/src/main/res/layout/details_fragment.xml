@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:src="@drawable/no_poster"
-        app:layout_constraintBottom_toTopOf="@id/nameMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/name_movie_size"
-        app:layout_constraintBottom_toTopOf="@id/yearMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/poster"
@@ -37,8 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toTopOf="@id/yearMovie"
-        app:layout_constraintEnd_toStartOf="@id/ratingMovieLabel"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameMovie"
@@ -49,8 +46,7 @@
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:src="@drawable/yellow_star"
-        app:layout_constraintBottom_toTopOf="@id/yearMovie"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ratingMovie"
         app:layout_constraintStart_toEndOf="@id/ratingMovie"
         app:layout_constraintTop_toBottomOf="@id/nameMovie" />
 
@@ -59,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toBottomOf="@id/directorMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ratingMovie"
@@ -70,7 +65,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/director_label_text"
-        app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
         app:layout_constraintEnd_toStartOf="@id/directorMovie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/yearMovie" />
@@ -80,32 +74,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toBottomOf="@id/categoryMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/directorMovieLabel"
         app:layout_constraintTop_toBottomOf="@id/yearMovie"
         tools:text="Режиссер фильма по умолчанию" />
 
     <TextView
-        android:id="@+id/categoryMovieLabel"
+        android:id="@+id/genresMovieLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category_label_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/categoryMovie"
+        android:text="@string/genres_label_text"
+        app:layout_constraintEnd_toStartOf="@id/genresMovie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/directorMovie" />
 
     <TextView
-        android:id="@+id/categoryMovie"
+        android:id="@+id/genresMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/categoryMovieLabel"
+        app:layout_constraintStart_toEndOf="@id/genresMovieLabel"
         app:layout_constraintTop_toBottomOf="@id/directorMovie"
-        tools:text="Категория фильма по умолчанию" />
+
+        />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -124,7 +117,7 @@
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="poster, nameMovie, ratingMovie,
         ratingMovieLabel, yearMovie, directorMovie, directorMovieLabel,
-        categoryMovie, categoryMovieLabel"
+        genresMovie, genresMovieLabel"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

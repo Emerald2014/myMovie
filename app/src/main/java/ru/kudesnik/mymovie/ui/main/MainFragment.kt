@@ -1,9 +1,12 @@
 package ru.kudesnik.mymovie.ui.main
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +15,7 @@ import ru.kudesnik.mymovie.databinding.MainFragmentBinding
 import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.MainFragmentAdapter
 import ru.kudesnik.mymovie.ui.list.ListFragment
+import ru.kudesnik.mymovie.utils.NetworkUtils
 
 class MainFragment : Fragment() {
 
@@ -58,10 +62,14 @@ class MainFragment : Fragment() {
             doFragmentTransToList(movieCat)
         })
         llMult.setOnClickListener(View.OnClickListener {
-            movieCat = MovieCategory.MULT
-            doFragmentTransToList(movieCat)
+
+//            Toast.makeText(requireContext(), doURL(), Toast.LENGTH_LONG).show()
+//            movieCat = MovieCategory.MULT
+//            doFragmentTransToList(movieCat)
         })
     }
+
+
 
     private fun doFragmentTransToList(movieCategory: MovieCategory) {
         val manager = activity?.supportFragmentManager
