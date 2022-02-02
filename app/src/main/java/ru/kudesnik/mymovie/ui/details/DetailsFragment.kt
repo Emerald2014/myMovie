@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import coil.api.load
+import coil.transform.GrayscaleTransformation
 import ru.kudesnik.mymovie.databinding.DetailsFragmentBinding
 import ru.kudesnik.mymovie.model.entities.Movie
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.model.AppState
 
 
@@ -50,6 +53,11 @@ class DetailsFragment : Fragment() {
                             yearMovie.text = appState.movieData[0].year.toString()
                             directorMovie.text = appState.movieData[0].director
                             genresMovie.text = appState.movieData[0].category
+                            poster.load(appState.movieData[0].poster) {
+                                crossfade(true)
+                                transformations(GrayscaleTransformation())
+                                placeholder(R.drawable.no_poster)
+                            }
                         }
                     }
                 })

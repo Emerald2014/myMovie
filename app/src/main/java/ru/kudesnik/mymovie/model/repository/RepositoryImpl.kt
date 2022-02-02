@@ -16,7 +16,8 @@ class RepositoryImpl : Repository {
             rating = dto?.rating?.kp ?: 0.0f,
             year = dto?.year ?: 1900,
             director = dto?.persons?.get(0)?.name ?: "Режиссер",
-            category = dto?.genres?.get(0)?.name ?: "Комедия"
+            category = dto?.genres?.get(0)?.name ?: "Комедия",
+            poster = dto?.poster?.url ?: ""
 
         )
     }
