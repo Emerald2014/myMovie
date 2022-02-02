@@ -4,8 +4,8 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.google.gson.Gson
-import ru.kudesnik.mymovie.model.entities.rest_entities.MovieKP
-import ru.kudesnik.mymovie.model.entities.rest_entities.MovieListKP
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieKP
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.MalformedURLException
@@ -20,6 +20,8 @@ object NetworkUtils {
 
     const val FIELD_GENRES = "genres.name"
     const val SEARCH_GENRES = "drama"
+
+    const val FIELD_ID = "id"
 
     const val FIELD_YEAR = "year"
     const val SEARCH_YEAR_ANSWER = "2020-2022"

@@ -11,7 +11,8 @@ data class Movie(
     val category: String = "Фантастика",
     val director: String = "Джеймс Кемерон",
     val year: Int = 2000,
-    val poster: String = "Будет позже"
+    val poster: String = "Будет позже",
+    val movieLength: Int = 0
 ) : Parcelable {
    }
 

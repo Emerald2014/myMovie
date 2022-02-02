@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.transform.GrayscaleTransformation
+import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.ListFragmentRecyclerItemBinding
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.ui.list.ListFragment
@@ -39,9 +42,13 @@ class ListFragmentAdapter(private val itemClickListener: ListFragment.OnItemView
     inner class ListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: Movie) = with(binding) {
             mainFragmentRecyclerItemTextView.text = movie.name
-            mainFragmentRecyclerItemDirector.text = movie.director
+            mainFragmentRecyclerItemDirector.text = movie.movieLength.toString()
             mainFragmentRecyclerItemYear.text = movie.year.toString()
             mainFragmentRecyclerItemRating.text = movie.rating.toString()
+            mainFragmentRecyclerItemLLPoster.load(movie.poster) {
+                crossfade(true)
+                placeholder(R.drawable.no_poster)
+            }
             root.setOnClickListener { itemClickListener.onItemViewClick(movie) }
         }
     }
