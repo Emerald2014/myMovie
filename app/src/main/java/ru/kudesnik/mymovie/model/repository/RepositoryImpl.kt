@@ -37,6 +37,8 @@ class RepositoryImpl : Repository {
                         name = dto.docs.get(index).name ?: "пусто",
                         rating = dto.docs.get(index).rating.kp ?: 0.0f,
                         year = dto.docs.get(index).year ?: 1900,
+                        poster = dto.docs.get(index).poster.url ?: "",
+                        movieLength = dto.docs.get(index).movieLength
                     )
                 )
             }

@@ -7,7 +7,8 @@ data class MovieKP(
     val rating: RatingKP,
     val year: Int,
     val persons: List<PersonsKP>,
-    val poster: PosterKP
+    val poster: PosterKP,
+    val movieLength: Int
 
 )
 

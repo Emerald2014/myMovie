@@ -55,7 +55,6 @@ class DetailsFragment : Fragment() {
                             genresMovie.text = appState.movieData[0].category
                             poster.load(appState.movieData[0].poster) {
                                 crossfade(true)
-                                transformations(GrayscaleTransformation())
                                 placeholder(R.drawable.no_poster)
                             }
                         }

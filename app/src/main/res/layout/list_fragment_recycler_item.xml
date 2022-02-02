@@ -12,9 +12,9 @@
 
     <ImageView
         android:id="@+id/mainFragmentRecyclerItemLLPoster"
-        android:layout_width="100dp"
+        android:layout_width="67dp"
         android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/no_poster"
         app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerItemLLView"
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Режиссёр: " />
+                android:text="Продолжительность: " />
 
             <TextView
                 android:id="@+id/mainFragmentRecyclerItemDirector"
