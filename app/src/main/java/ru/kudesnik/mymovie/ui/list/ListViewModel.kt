@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.kudesnik.mymovie.model.AppState
 import ru.kudesnik.mymovie.model.entities.MovieCategory
-import ru.kudesnik.mymovie.model.entities.rest_entities.MovieListKP
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
 import ru.kudesnik.mymovie.model.repository.Repository
 
 class ListViewModel(private val repository: Repository) : ViewModel() {

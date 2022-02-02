@@ -1,11 +1,16 @@
 package ru.kudesnik.mymovie.model.repository
 
+import android.util.Log
 import ru.kudesnik.mymovie.model.entities.*
+import ru.kudesnik.mymovie.model.entities.rest.MovieRepo
 import ru.kudesnik.mymovie.utils.NetworkUtils
 
 class RepositoryImpl : Repository {
     override fun getMoviesFromServer(id: Int): Movie {
-        val dto = NetworkUtils.loadMovie(id)
+//        val dto = NetworkUtils.loadMovie(id)
+        val dto =
+            MovieRepo.api.getMovie(id, NetworkUtils.FIELD_ID, NetworkUtils.TOKEN).execute().body()
+//        Log.i("MyResult2", MovieRepo.api)
         return Movie(
             name = dto?.name ?: "пусто",
             rating = dto?.rating?.kp ?: 0.0f,
@@ -17,7 +22,9 @@ class RepositoryImpl : Repository {
     }
 
     override fun getMovieListFromServer(genres: String): List<Movie> {
-        val dto = NetworkUtils.loadMovieList(genres)
+        val dto = MovieRepo.apiList.getMovieList(genresName = genres, token = NetworkUtils.TOKEN)
+            .execute().body()
+//        val dto = NetworkUtils.loadMovieList(genres)
         val movieList = mutableListOf<Movie>()
 
         if (dto != null) {

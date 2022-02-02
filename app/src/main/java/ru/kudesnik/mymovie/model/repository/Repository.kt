@@ -2,7 +2,7 @@ package ru.kudesnik.mymovie.model.repository
 
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
-import ru.kudesnik.mymovie.model.entities.rest_entities.MovieListKP
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
 
 interface Repository {
     fun getMoviesFromServer(id: Int): Movie

@@ -1,4 +1,4 @@
-package ru.kudesnik.mymovie.model.entities.rest_entities
+package ru.kudesnik.mymovie.model.entities.rest.rest_entities
 
 data class MovieKP(
     val id: Int,
