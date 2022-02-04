@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_favourites"
+        android:title="Избранное"
+        app:showAsAction="always"/>
+    <item
         android:id="@+id/popup_menu_movie_comedy"
         android:icon="@drawable/ic_comedy"
         android:title="@string/movie_category_text_comedy"

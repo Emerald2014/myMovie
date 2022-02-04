@@ -15,6 +15,7 @@ import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
+import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
 
 
 class ListFragment : Fragment() {
@@ -85,6 +86,15 @@ class ListFragment : Fragment() {
             .inflate(R.menu.popup_menu)
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
+                R.id.menu_favourites -> {
+                    parentFragmentManager.apply {
+                        beginTransaction()
+                            .add(R.id.container, FavouriteFragment.newInstance())
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                    true
+                }
                 R.id.popup_menu_movie_comedy -> {
                     changeMovieCategory = MovieCategory.COMEDY
                     viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
