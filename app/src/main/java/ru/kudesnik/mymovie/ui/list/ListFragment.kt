@@ -16,6 +16,7 @@ import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
+import ru.kudesnik.mymovie.ui.main.MainFragment
 
 
 class ListFragment : Fragment() {
@@ -50,17 +51,17 @@ class ListFragment : Fragment() {
             arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
                 when (it) {
                     MovieCategory.COMEDY -> {
-                        viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie)
+                        viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie, true)
 //                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
                         toolbar.subtitle = MovieCategory.COMEDY.nameMovie
                     }
                     MovieCategory.ACTION -> {
                         toolbar.subtitle = MovieCategory.ACTION.nameMovie
-                        viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie)
+                        viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie, true)
 //                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
                     }
                     MovieCategory.FANTASTIC -> {
-                        viewModel.getMovieListFromServer(MovieCategory.FANTASTIC.nameMovie)
+                        viewModel.getMovieListFromServer(MovieCategory.FANTASTIC.nameMovie, true)
                         toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
 //                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
                     }
@@ -191,6 +192,7 @@ class ListFragment : Fragment() {
 
     companion object {
         const val BUNDLE_EXTRA = "movieCat"
+        const val BUNDLE_EXTRA_SHORT = "shortLenght"
 
         fun newInstance(bundle: Bundle): ListFragment {
             val fragment = ListFragment()

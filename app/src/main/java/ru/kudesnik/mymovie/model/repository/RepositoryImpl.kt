@@ -8,7 +8,9 @@ import ru.kudesnik.mymovie.model.entities.database.FavouriteEntity
 import ru.kudesnik.mymovie.model.entities.rest.MovieRepo
 import ru.kudesnik.mymovie.utils.NetworkUtils
 
-class RepositoryImpl (): Repository {
+var shortMovieLength = ""
+
+class RepositoryImpl() : Repository {
     override fun getMoviesFromServer(id: Int): Movie {
 //        val dto = NetworkUtils.loadMovie(id)
         val dto =
@@ -25,8 +27,16 @@ class RepositoryImpl (): Repository {
         )
     }
 
-    override fun getMovieListFromServer(genres: String): List<Movie> {
-        val dto = MovieRepo.apiList.getMovieList(genresName = genres, token = NetworkUtils.TOKEN)
+    override fun getMovieListFromServer(genres: String, isShortMovieLenght: Boolean): List<Movie> {
+        when (isShortMovieLenght) {
+            true -> shortMovieLength = "0-50"
+            false -> shortMovieLength = "0-1000"
+        }
+        val dto = MovieRepo.apiList.getMovieList(
+            genresName = genres,
+            token = NetworkUtils.TOKEN,
+            shortMovieLength = shortMovieLength
+        )
             .execute().body()
 //        val dto = NetworkUtils.loadMovieList(genres)
         val movieList = mutableListOf<Movie>()

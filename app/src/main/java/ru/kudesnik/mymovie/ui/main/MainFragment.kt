@@ -1,8 +1,7 @@
 package ru.kudesnik.mymovie.ui.main
 
-import android.net.Uri
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.parcelize.Parcelize
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.MainFragmentBinding
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.model.repository.shortMovieLength
 import ru.kudesnik.mymovie.ui.adapters.MainFragmentAdapter
 import ru.kudesnik.mymovie.ui.list.ListFragment
-import ru.kudesnik.mymovie.utils.NetworkUtils
+import kotlin.properties.Delegates
+
+private const val dataSetKey = "dataSetKey"
+//private const val dataSetKeyInt = "dataSetKeyInt"
 
 class MainFragment : Fragment() {
 
@@ -23,6 +27,7 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
     private var mainFragmentAdapter: MainFragmentAdapter? = null
     private lateinit var movieCat: MovieCategory
+    private var isShortMovieLength by Delegates.notNull<Boolean>()
 
     private lateinit var viewModelM: MainViewModel
     override fun onCreateView(
@@ -41,11 +46,45 @@ class MainFragment : Fragment() {
         viewModelM = ViewModelProvider(this)[MainViewModel::class.java]
         viewModelM.getLiveData().observe(viewLifecycleOwner, Observer { renderDataM() })
         viewModelM.getMovieCategory()
+
+        initDataSet()
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initDataSet() = with(binding) {
+        loadDataSet()
+        shortMovieLengthCheckBox.isChecked = isShortMovieLength
+        shortMovieLengthCheckBox.setOnClickListener {
+            isShortMovieLength = shortMovieLengthCheckBox.isChecked
+            saveDataSetToDisk()
+
+        }
+        buttonCheck.setOnClickListener {
+            Toast.makeText(requireContext(), isShortMovieLength.toString(), Toast.LENGTH_SHORT)
+                .show()
+
+        }
+    }
+
+    private fun loadDataSet() {
+        activity?.let {
+            isShortMovieLength = activity
+                ?.getPreferences(Context.MODE_PRIVATE)
+                ?.getBoolean(dataSetKey, true) ?: true
+        }
+
+    }
+
+    private fun saveDataSetToDisk() {
+        val editor = activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
+        editor?.putBoolean(dataSetKey, isShortMovieLength)
+        editor?.apply()
     }
 
     private fun renderDataM() = with(binding) {
@@ -68,7 +107,6 @@ class MainFragment : Fragment() {
 //            doFragmentTransToList(movieCat)
         })
     }
-
 
 
     private fun doFragmentTransToList(movieCategory: MovieCategory) {

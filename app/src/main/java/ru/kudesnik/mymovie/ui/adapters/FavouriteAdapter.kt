@@ -8,8 +8,11 @@ import coil.api.load
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.ItemFavouriteListBinding
 import ru.kudesnik.mymovie.model.entities.Movie
+import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
+import ru.kudesnik.mymovie.ui.list.ListFragment
 
-class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.RecyclerItemViewHolder>() {
+class FavouriteAdapter(private val itemClickListener: FavouriteFragment.OnItemViewClickListener) :
+    RecyclerView.Adapter<FavouriteAdapter.RecyclerItemViewHolder>() {
     private var data: List<Movie> = arrayListOf()
 
     fun setData(data: List<Movie>) {
@@ -49,6 +52,7 @@ class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.RecyclerItemViewH
                 }
                 root.setOnClickListener {
                     Toast.makeText(itemView.context, data.name, Toast.LENGTH_LONG).show()
+                    itemClickListener.onItemViewClick(data)
                 }
             }
         }

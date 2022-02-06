@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import coil.api.load
 import coil.transform.GrayscaleTransformation
@@ -12,6 +13,9 @@ import ru.kudesnik.mymovie.model.entities.Movie
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.model.AppState
+import ru.kudesnik.mymovie.model.repository.Repository
+import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
+import ru.kudesnik.mymovie.ui.list.ListFragment.Companion.BUNDLE_EXTRA
 
 
 class DetailsFragment : Fragment() {
@@ -19,6 +23,7 @@ class DetailsFragment : Fragment() {
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailsViewModel by viewModel()
+    var isFavourite = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +35,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        addToFavourites()
         arguments?.getParcelable<Movie>(BUNDLE_EXTRA)?.let {
             with(binding) {
                 nameMovie.text = it.name
@@ -68,6 +74,20 @@ class DetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun addToFavourites() = with(binding) {
+        val floatButton = FABFavourites
+        floatButton.setOnClickListener {
+            if (isFavourite == false) {
+                isFavourite = true
+                Toast.makeText(requireContext(), "Добавлено в избранное", Toast.LENGTH_SHORT).show()
+            } else {
+                isFavourite = false
+                Toast.makeText(requireContext(), "Удалено из избранного", Toast.LENGTH_SHORT).show()
+            }
+
+        }
     }
 
 

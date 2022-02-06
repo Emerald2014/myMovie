@@ -10,7 +10,6 @@
 
     <ImageView
         android:id="@+id/poster"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -123,5 +122,15 @@
         ratingMovieLabel, yearMovie, directorMovie, directorMovieLabel,
         genresMovie, genresMovieLabel"
         tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        android:src="@drawable/yellow_star"
+        android:backgroundTint="@color/yellow"
+        android:id="@+id/FABFavourites"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

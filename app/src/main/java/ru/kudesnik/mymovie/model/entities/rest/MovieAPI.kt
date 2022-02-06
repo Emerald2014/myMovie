@@ -6,6 +6,7 @@ import retrofit2.http.Query
 import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieKP
 import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
 
+
 interface MovieAPI {
     @GET("movie")
     fun getMovie(
@@ -22,6 +23,8 @@ interface MovieListAPI {
         @Query("search") genresName: String,
         @Query("field") yearLabel: String = "year",
         @Query("search") year: String = "2020-2022",
+        @Query("field") shortMovieLengthLabel: String = "movieLength",
+        @Query("search") shortMovieLength: String,
         @Query("field") typeNumberLabel: String = "typeNumber",
         @Query("search") typeNumber: Int = 1,
         @Query("field") ratingKPLabel: String = "rating.kp",
