@@ -19,7 +19,7 @@ import ru.kudesnik.mymovie.ui.list.ListFragment
 import kotlin.properties.Delegates
 
 private const val dataSetKey = "dataSetKey"
-//private const val dataSetKeyInt = "dataSetKeyInt"
+var tempVar:String = ""
 
 class MainFragment : Fragment() {
 
@@ -89,14 +89,19 @@ class MainFragment : Fragment() {
 
     private fun renderDataM() = with(binding) {
         llAction.setOnClickListener(View.OnClickListener {
+            tempVar = "боевик"
             movieCat = MovieCategory.ACTION
             doFragmentTransToList(movieCat)
         })
         llComedy.setOnClickListener(View.OnClickListener {
+            tempVar = "комедия"
+
             movieCat = MovieCategory.COMEDY
             doFragmentTransToList(movieCat)
         })
         llFantastic.setOnClickListener(View.OnClickListener {
+            tempVar = "фантастика"
+
             movieCat = MovieCategory.FANTASTIC
             doFragmentTransToList(movieCat)
         })
@@ -113,13 +118,21 @@ class MainFragment : Fragment() {
         val manager = activity?.supportFragmentManager
         manager?.let { manager ->
             val bundle = Bundle().apply {
-                putParcelable(ListFragment.BUNDLE_EXTRA, movieCat)
+                                putParcelable(ListFragment.BUNDLE_EXTRA, tempVar)
+                putString("keyString", tempVar)
+                putBoolean("keyBoolean", isShortMovieLength)
+
+//                putParcelable(ListFragment.BUNDLE_EXTRA, movieCat)
             }
             manager.beginTransaction()
                 .add(R.id.container, ListFragment.newInstance(bundle))
                 .addToBackStack("")
                 .commitAllowingStateLoss()
         }
+    }
+
+    private fun putParcelable(bundleExtra: String, tempVar: String) {
+
     }
 
     companion object {

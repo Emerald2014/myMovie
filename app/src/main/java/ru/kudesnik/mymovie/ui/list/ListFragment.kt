@@ -17,6 +17,7 @@ import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
 import ru.kudesnik.mymovie.ui.main.MainFragment
+import ru.kudesnik.mymovie.ui.main.tempVar
 
 
 class ListFragment : Fragment() {
@@ -47,14 +48,19 @@ class ListFragment : Fragment() {
             listFragmentRecyclerView.adapter = adapter
             changeMovieDataSet()
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-
-            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
-                when (it) {
-                    MovieCategory.COMEDY -> {
+val isShort = arguments?.getBoolean("keyBoolean")
+  val keyString=          arguments?.getString("keyString")
+//      ?.let {
+//            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
+            if (keyString != null&&isShort!=null) {
+                viewModel.getMovieListFromServer(keyString, isShort)
+            }
+/*                when (it) {
+                    *//*MovieCategory.COMEDY -> {
                         viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie, true)
 //                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
                         toolbar.subtitle = MovieCategory.COMEDY.nameMovie
-                    }
+                    }*//*
                     MovieCategory.ACTION -> {
                         toolbar.subtitle = MovieCategory.ACTION.nameMovie
                         viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie, true)
@@ -69,8 +75,8 @@ class ListFragment : Fragment() {
                         toolbar.subtitle = MovieCategory.MULT.nameMovie
 //                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
                     }
-                }
-            }
+                }*/
+//            }
         }
     }
 
