@@ -17,4 +17,7 @@ interface Repository {
 
     fun saveEntity(movie: Movie)
     fun getAllFavourites(): List<Movie>
+
+    fun saveHistoryEntity(movie: Movie)
+    fun getAllHistory(): List<Movie>
 }

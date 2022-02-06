@@ -2,9 +2,7 @@ package ru.kudesnik.mymovie.model.repository
 
 import android.util.Log
 import ru.kudesnik.mymovie.model.entities.*
-import ru.kudesnik.mymovie.model.entities.database.Database
-import ru.kudesnik.mymovie.model.entities.database.FavouriteDao
-import ru.kudesnik.mymovie.model.entities.database.FavouriteEntity
+import ru.kudesnik.mymovie.model.entities.database.*
 import ru.kudesnik.mymovie.model.entities.rest.MovieRepo
 import ru.kudesnik.mymovie.utils.NetworkUtils
 
@@ -67,6 +65,7 @@ class RepositoryImpl() : Repository {
 
     override fun getMovieCategoryFromLocalStorage() = getMovieCategory()
 
+    //Favourites
     override fun getAllFavourites(): List<Movie> {
 //        return convertFavouriteEntityToMovie(localDataSource.all())
         return convertFavouriteEntityToMovie(Database.db.favouriteDao().all())
@@ -90,6 +89,35 @@ class RepositoryImpl() : Repository {
 
     private fun convertMovieToEntity(movie: Movie): FavouriteEntity {
         return FavouriteEntity(
+            0,
+            movie.name,
+            movie.movieLength,
+            movie.poster,
+            movie.rating
+        )
+    }
+
+    //History
+    override fun saveHistoryEntity(movie: Movie) {
+        HistoryDatabase.db.historyDao().insert(convertMovieToHistoryEntity(movie))
+    }
+
+    override fun getAllHistory(): List<Movie> {
+        return convertHistoryEntityToMovie(HistoryDatabase.db.historyDao().all())
+    }
+
+    private fun convertHistoryEntityToMovie(entityList: List<HistoryEntity>): List<Movie> {
+        return entityList.map {
+            Movie(
+                it.idEntity,
+                it.nameMovieEntity,
+                it.ratingMovieEntity,
+                )
+        }
+    }
+
+    private fun convertMovieToHistoryEntity(movie: Movie): HistoryEntity {
+        return HistoryEntity(
             0,
             movie.name,
             movie.movieLength,

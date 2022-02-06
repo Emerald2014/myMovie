@@ -11,6 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kudesnik.mymovie.databinding.MainActivityWebviewBinding
 import ru.kudesnik.mymovie.ui.details.DetailsViewModel
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
+import ru.kudesnik.mymovie.ui.history.HistoryFragment
 import ru.kudesnik.mymovie.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -36,16 +37,13 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_favourites -> {
-                supportFragmentManager.apply {
-                    beginTransaction()
-                        .add(R.id.container, FavouriteFragment.newInstance())
-                        .addToBackStack("")
-                        .commitAllowingStateLoss()
-//                openFragment(FavouriteFragment.newInstance())
-                }
+                openFragment(FavouriteFragment.newInstance())
                 true
             }
-
+            R.id.menu_history -> {
+                openFragment(HistoryFragment.newInstance())
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

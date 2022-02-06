@@ -18,13 +18,13 @@ class DetailsViewModel(private val repository: Repository) : ViewModel() {
             return localeLiveData
         }
 
-    fun loadData(id: Int) =with(viewModelScope){
+    fun loadData(id: Int) = with(viewModelScope) {
         localeLiveData.value = AppState.Loading
 
         launch(Dispatchers.IO) {
             val data = repository.getMoviesFromServer(id)
-            repository.saveEntity(data)
-            withContext(Dispatchers.Main) { localeLiveData.value = AppState.Success(listOf(data))}
+            repository.saveHistoryEntity(data)
+            withContext(Dispatchers.Main) { localeLiveData.value = AppState.Success(listOf(data)) }
         }
 
 /*        Thread {

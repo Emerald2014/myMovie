@@ -42,41 +42,18 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         with(binding) {
             listFragmentRecyclerView.adapter = adapter
             changeMovieDataSet()
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-val isShort = arguments?.getBoolean("keyBoolean")
-  val keyString=          arguments?.getString("keyString")
+            val isShort = arguments?.getBoolean("keyBoolean")
+            val keyString = arguments?.getString("keyString")
 //      ?.let {
 //            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
-            if (keyString != null&&isShort!=null) {
+            if (keyString != null && isShort != null) {
                 viewModel.getMovieListFromServer(keyString, isShort)
+                toolbar.subtitle = keyString
             }
-/*                when (it) {
-                    *//*MovieCategory.COMEDY -> {
-                        viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie, true)
-//                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
-                        toolbar.subtitle = MovieCategory.COMEDY.nameMovie
-                    }*//*
-                    MovieCategory.ACTION -> {
-                        toolbar.subtitle = MovieCategory.ACTION.nameMovie
-                        viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie, true)
-//                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
-                    }
-                    MovieCategory.FANTASTIC -> {
-                        viewModel.getMovieListFromServer(MovieCategory.FANTASTIC.nameMovie, true)
-                        toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
-//                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
-                    }
-                    MovieCategory.MULT -> {
-                        toolbar.subtitle = MovieCategory.MULT.nameMovie
-//                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
-                    }
-                }*/
-//            }
         }
     }
 
@@ -150,6 +127,7 @@ val isShort = arguments?.getBoolean("keyBoolean")
                             val bundle = Bundle().apply {
                                 putParcelable(DetailsFragment.BUNDLE_EXTRA, movie)
                             }
+
                             manager.beginTransaction()
                                 .add(R.id.container, DetailsFragment.newInstance(bundle))
                                 .addToBackStack("")
