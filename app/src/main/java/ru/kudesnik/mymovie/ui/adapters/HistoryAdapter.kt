@@ -8,7 +8,8 @@ import ru.kudesnik.mymovie.databinding.ItemHistoryFragmentBinding
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.ui.history.HistoryFragment
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
+class HistoryAdapter(private val itemLongClickListener: HistoryFragment.OnItemViewLongClickListener) :
+    RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
     private var data: List<Movie> = arrayListOf()
 
     fun setData(data: List<Movie>) {
@@ -37,6 +38,9 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolde
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 numberOfHistory.text = data.id.toString()
                 nameMovieOfHistory.text = data.name
+                deleteButton.setOnClickListener {
+                    itemLongClickListener.onItemViewLongClick(data)
+                }
                 root.setOnClickListener {
                     Toast.makeText(
                         itemView.context,
@@ -44,22 +48,11 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolde
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+                root.setOnLongClickListener {
+                    itemLongClickListener.onItemViewLongClick(data)
+                    return@setOnLongClickListener true
+                }
             }
         }
     }
 }
-
-/*fun bind(data: Movie) = with(binding) {
-    if (layoutPosition != RecyclerView.NO_POSITION) {
-//                itemMovieNameTest.text = data.name
-        numberOfHistory.text = data.id.toString()
-        nameMovieOfHistory.text = data.name
-
-        root.setOnClickListener {
-            Toast.makeText(itemView.context, data.name, Toast.LENGTH_LONG).show()
-            itemClickListener.onItemViewClick(data)
-        }
-    }
-}
-}
-}*/

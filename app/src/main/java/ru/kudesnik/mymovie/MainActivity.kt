@@ -9,14 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kudesnik.mymovie.databinding.MainActivityWebviewBinding
-import ru.kudesnik.mymovie.ui.details.DetailsViewModel
+//import ru.kudesnik.mymovie.ui.details.DetailsViewModel
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
 import ru.kudesnik.mymovie.ui.history.HistoryFragment
 import ru.kudesnik.mymovie.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityWebviewBinding
-    private val viewModel: DetailsViewModel by viewModel()
+//    private val viewModel: DetailsViewModel by viewModel()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {

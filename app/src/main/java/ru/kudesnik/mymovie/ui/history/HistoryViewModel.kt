@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kudesnik.mymovie.model.AppState
+import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.repository.Repository
 
-class HistoryViewModel (private val repository: Repository) : ViewModel() {
+class HistoryViewModel(private val repository: Repository) : ViewModel() {
     val historyLiveData: MutableLiveData<AppState> = MutableLiveData()
+    val historyLiveDataDelete = MutableLiveData<Unit>()
 
     fun getAllHistory() {
         historyLiveData.value = AppState.Loading
@@ -17,4 +19,14 @@ class HistoryViewModel (private val repository: Repository) : ViewModel() {
             historyLiveData.postValue(AppState.Success(repository.getAllHistory()))
         }
     }
+
+    fun deleteMovie(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO) {
+            historyLiveDataDelete.postValue(repository.deleteMovie(movie))
+        }
+    }
 }
+
+
+
+

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/design_default_color_secondary_variant"
     tools:context=".ui.main.MainFragment">
 
@@ -124,32 +123,11 @@
 
 
     <CheckBox
+        android:id="@+id/shortMovieLengthCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/shortMovieLengthCheckBox"
         android:text="@string/short_movie_lenght"
-        app:layout_constraintTop_toBottomOf="@id/ll_fantastic"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_fantastic" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Check"
-        app:layout_constraintTop_toBottomOf="@id/shortMovieLengthCheckBox"
-        android:id="@+id/buttonCheck"/>
-
-    <!--
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mainFragmentRV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/design_default_color_error"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/testText2">
-
-
-
-        </androidx.recyclerview.widget.RecyclerView>
-    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

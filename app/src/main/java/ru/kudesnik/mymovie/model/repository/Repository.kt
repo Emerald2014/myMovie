@@ -2,7 +2,6 @@ package ru.kudesnik.mymovie.model.repository
 
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
-import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
 
 interface Repository {
 
@@ -20,4 +19,6 @@ interface Repository {
 
     fun saveHistoryEntity(movie: Movie)
     fun getAllHistory(): List<Movie>
+
+    fun deleteMovie(movie: Movie)
 }

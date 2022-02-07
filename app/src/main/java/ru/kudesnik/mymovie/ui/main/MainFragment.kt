@@ -48,8 +48,6 @@ class MainFragment : Fragment() {
         viewModelM.getMovieCategory()
 
         initDataSet()
-
-
     }
 
     override fun onDestroyView() {
@@ -63,12 +61,6 @@ class MainFragment : Fragment() {
         shortMovieLengthCheckBox.setOnClickListener {
             isShortMovieLength = shortMovieLengthCheckBox.isChecked
             saveDataSetToDisk()
-
-        }
-        buttonCheck.setOnClickListener {
-            Toast.makeText(requireContext(), isShortMovieLength.toString(), Toast.LENGTH_SHORT)
-                .show()
-
         }
     }
 
@@ -78,7 +70,6 @@ class MainFragment : Fragment() {
                 ?.getPreferences(Context.MODE_PRIVATE)
                 ?.getBoolean(dataSetKey, true) ?: true
         }
-
     }
 
     private fun saveDataSetToDisk() {
@@ -95,13 +86,11 @@ class MainFragment : Fragment() {
         })
         llComedy.setOnClickListener(View.OnClickListener {
             tempVar = "комедия"
-
             movieCat = MovieCategory.COMEDY
             doFragmentTransToList(movieCat)
         })
         llFantastic.setOnClickListener(View.OnClickListener {
             tempVar = "фантастика"
-
             movieCat = MovieCategory.FANTASTIC
             doFragmentTransToList(movieCat)
         })
@@ -121,8 +110,6 @@ class MainFragment : Fragment() {
                                 putParcelable(ListFragment.BUNDLE_EXTRA, tempVar)
                 putString("keyString", tempVar)
                 putBoolean("keyBoolean", isShortMovieLength)
-
-//                putParcelable(ListFragment.BUNDLE_EXTRA, movieCat)
             }
             manager.beginTransaction()
                 .add(R.id.container, ListFragment.newInstance(bundle))

@@ -1,8 +1,10 @@
 package ru.kudesnik.mymovie.model.repository
 
-import android.util.Log
 import ru.kudesnik.mymovie.model.entities.*
-import ru.kudesnik.mymovie.model.entities.database.*
+import ru.kudesnik.mymovie.model.entities.database.Database
+import ru.kudesnik.mymovie.model.entities.database.FavouriteEntity
+import ru.kudesnik.mymovie.model.entities.database.HistoryDatabase
+import ru.kudesnik.mymovie.model.entities.database.HistoryEntity
 import ru.kudesnik.mymovie.model.entities.rest.MovieRepo
 import ru.kudesnik.mymovie.utils.NetworkUtils
 
@@ -112,7 +114,7 @@ class RepositoryImpl() : Repository {
                 it.idEntity,
                 it.nameMovieEntity,
                 it.ratingMovieEntity,
-                )
+            )
         }
     }
 
@@ -124,5 +126,10 @@ class RepositoryImpl() : Repository {
             movie.poster,
             movie.rating
         )
+    }
+
+    override fun deleteMovie(movie: Movie) {
+        HistoryDatabase.db.historyDao()
+            .deleteByMovieName(convertMovieToHistoryEntity(movie).nameMovieEntity)
     }
 }

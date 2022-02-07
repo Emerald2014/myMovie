@@ -16,8 +16,6 @@ import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
-import ru.kudesnik.mymovie.ui.main.MainFragment
-import ru.kudesnik.mymovie.ui.main.tempVar
 
 
 class ListFragment : Fragment() {

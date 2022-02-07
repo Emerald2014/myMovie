@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import org.koin.android.ext.android.inject
 import ru.kudesnik.mymovie.databinding.HistoryFragmentBinding
@@ -14,12 +15,18 @@ import ru.kudesnik.mymovie.ui.adapters.HistoryAdapter
 class HistoryFragment : Fragment() {
     private var _binding: HistoryFragmentBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var deleteButton: ImageButton
     private val viewModel: HistoryViewModel by inject()
 
-    //    private var adapter: FavouriteAdapter by lazy { FavouriteAdapter() }
-    private val adapter: HistoryAdapter by lazy { HistoryAdapter() }
-
+    private val adapter: HistoryAdapter by lazy {
+        HistoryAdapter(object :
+            OnItemViewLongClickListener {
+            override fun onItemViewLongClick(movie: Movie) {
+                viewModel.deleteMovie(movie)
+                viewModel.getAllHistory()
+            }
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +55,6 @@ class HistoryFragment : Fragment() {
                 historyFragmentRecyclerView.visibility = View.VISIBLE
                 progressBar.visibility = View.GONE
                 adapter.setData(appState.movieData)
-
             }
             is AppState.Loading -> {
                 historyFragmentRecyclerView.visibility = View.GONE
@@ -60,8 +66,8 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    interface OnItemViewClickListener {
-        fun onItemViewClick(movie: Movie)
+    interface OnItemViewLongClickListener {
+        fun onItemViewLongClick(movie: Movie)
     }
 
     companion object {
