@@ -19,6 +19,12 @@ interface HistoryDao {
     @Delete
     fun delete(entity: HistoryEntity)
 
+    @Query("UPDATE HistoryEntity SET commentMovieEntity = :movieComment WHERE nameMovieEntity = :movieName")
+    fun updateByMovieComment(movieName: String, movieComment: String)
+
+//    @Query("UPDATE employee SET salary = :newSalary WHERE id IN (:idList)")
+//    fun updateSalaryByIdList(idList: List<Long?>?, newSalary: Int): Int
+
     @Query("DELETE FROM HistoryEntity WHERE nameMovieEntity = :movieName")
     fun deleteByMovieName(movieName: String)
 }

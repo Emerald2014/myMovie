@@ -12,9 +12,10 @@ data class Movie(
     val director: String = "Джеймс Кемерон",
     val year: Int = 2000,
     val poster: String = "Будет позже",
-    val movieLength: Int = 0
+    val movieLength: Int = 0,
+    var comment: String = "Комментарий"
 ) : Parcelable {
-   }
+}
 
 fun getMoviesCategoryComedy() = listOf(
     Movie(0, "Комедия 1", 8.1f, "Комедия", "Режиссер 1", 2001),

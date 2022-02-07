@@ -114,6 +114,7 @@ class RepositoryImpl() : Repository {
                 it.idEntity,
                 it.nameMovieEntity,
                 it.ratingMovieEntity,
+                it.commentMovieEntity
             )
         }
     }
@@ -124,12 +125,21 @@ class RepositoryImpl() : Repository {
             movie.name,
             movie.movieLength,
             movie.poster,
-            movie.rating
+            movie.rating,
+            movie.comment
         )
     }
 
     override fun deleteMovie(movie: Movie) {
         HistoryDatabase.db.historyDao()
             .deleteByMovieName(convertMovieToHistoryEntity(movie).nameMovieEntity)
+    }
+
+    override fun updateMovie(movie: Movie) {
+        HistoryDatabase.db.historyDao()
+            .updateByMovieComment(
+                convertMovieToHistoryEntity(movie).nameMovieEntity,
+                convertMovieToHistoryEntity(movie).commentMovieEntity
+            )
     }
 }

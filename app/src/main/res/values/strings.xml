@@ -12,4 +12,5 @@
     <string name="movie_category_text_mult">Мультфильм</string>
     <string name="genres_label_text">Жанры</string>
     <string name="short_movie_lenght"><![CDATA[Короткометражка (< 50 мин)]]></string>
+    <string name="comment">Комментарий:</string>
 </resources>

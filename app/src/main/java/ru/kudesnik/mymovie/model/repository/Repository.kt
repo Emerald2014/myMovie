@@ -21,4 +21,6 @@ interface Repository {
     fun getAllHistory(): List<Movie>
 
     fun deleteMovie(movie: Movie)
+
+    fun updateMovie(movie: Movie)
 }

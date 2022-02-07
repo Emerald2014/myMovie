@@ -25,6 +25,12 @@ class HistoryViewModel(private val repository: Repository) : ViewModel() {
             historyLiveDataDelete.postValue(repository.deleteMovie(movie))
         }
     }
+
+    fun updateMovie(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO) {
+            historyLiveDataDelete.postValue(repository.updateMovie(movie))
+        }
+    }
 }
 
 

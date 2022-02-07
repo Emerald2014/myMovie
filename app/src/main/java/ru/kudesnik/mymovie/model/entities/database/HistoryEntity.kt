@@ -9,5 +9,6 @@ data class HistoryEntity(
     val nameMovieEntity: String,
     val durationMovieEntity: Int,
     val posterMovieEntity: String,
-    val ratingMovieEntity: Float
+    val ratingMovieEntity: Float,
+    val commentMovieEntity: String
 )

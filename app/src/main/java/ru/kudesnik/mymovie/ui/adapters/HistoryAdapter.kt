@@ -8,7 +8,10 @@ import ru.kudesnik.mymovie.databinding.ItemHistoryFragmentBinding
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.ui.history.HistoryFragment
 
-class HistoryAdapter(private val itemLongClickListener: HistoryFragment.OnItemViewLongClickListener) :
+class HistoryAdapter(
+    private val itemLongClickListener: HistoryFragment.OnItemViewLongClickListener,
+    private val itemComment: HistoryFragment.OnDoComment
+) :
     RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
     private var data: List<Movie> = arrayListOf()
 
@@ -52,6 +55,12 @@ class HistoryAdapter(private val itemLongClickListener: HistoryFragment.OnItemVi
                     itemLongClickListener.onItemViewLongClick(data)
                     return@setOnLongClickListener true
                 }
+                editTextComment.setText(data.comment)
+                buttonOk.setOnClickListener{
+                    data.comment = editTextComment.text.toString()
+                    itemComment.onDoComment(data)
+                }
+
             }
         }
     }

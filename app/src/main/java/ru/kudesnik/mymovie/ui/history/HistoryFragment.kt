@@ -25,6 +25,14 @@ class HistoryFragment : Fragment() {
                 viewModel.deleteMovie(movie)
                 viewModel.getAllHistory()
             }
+
+        }, object: OnDoComment{
+            override fun onDoComment(movie: Movie) {
+                viewModel.updateMovie(movie)
+//                viewModel.getAllHistory()
+
+            }
+
         })
     }
 
@@ -68,6 +76,10 @@ class HistoryFragment : Fragment() {
 
     interface OnItemViewLongClickListener {
         fun onItemViewLongClick(movie: Movie)
+    }
+
+    interface OnDoComment {
+        fun onDoComment(movie: Movie)
     }
 
     companion object {
