@@ -16,11 +16,11 @@ class ListViewModel(private val repository: Repository) : ViewModel() {
     fun getMovieFromLocalSource(movieCategory: MovieCategory) =
         getDataFromLocalSource(movieCategory)
 
-    fun getMovieListFromServer(genres:String) {
+    fun getMovieListFromServer(genres: String, isShort: Boolean) {
         liveData.value = AppState.Loading
-        Thread{
+        Thread {
             Thread.sleep(1000)
-            liveData.postValue(AppState.Success(repository.getMovieListFromServer(genres)))
+            liveData.postValue(AppState.Success(repository.getMovieListFromServer(genres, isShort)))
         }.start()
     }
 

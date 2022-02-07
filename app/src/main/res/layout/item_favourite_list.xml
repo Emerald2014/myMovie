@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemFavouriteContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/red"
+
+    app:layout_constraintHorizontal_bias="1.0">
+
+
+    <ImageView
+        android:id="@+id/itemFavouritePoster"
+        android:layout_width="67dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_poster"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerItemLLView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/itemFavouriteLL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:minHeight="100dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerItemLLView"
+        app:layout_constraintEnd_toStartOf="@id/itemFavouriteLLRating"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/itemFavouritePoster"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/itemFavouriteMovieName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Это очень длинное название фильма, чтобы оно не уместилось Это очень длинное название фильма, чтобы оно не уместилось на экране" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/itemFavouriteLLRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/yellow_star" />
+
+        <TextView
+            android:id="@+id/itemFavouriteRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            tools:text="4,5" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/mainFragmentRecyclerItemLLView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemFavouriteLL" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

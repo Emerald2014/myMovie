@@ -15,6 +15,7 @@ import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
 import ru.kudesnik.mymovie.ui.adapters.ListFragmentAdapter
 import ru.kudesnik.mymovie.ui.details.DetailsFragment
+import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
 
 
 class ListFragment : Fragment() {
@@ -39,35 +40,17 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         with(binding) {
             listFragmentRecyclerView.adapter = adapter
             changeMovieDataSet()
             viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
-
-            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
-                when (it) {
-                    MovieCategory.COMEDY -> {
-                        viewModel.getMovieListFromServer(MovieCategory.COMEDY.nameMovie)
-//                        viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
-                        toolbar.subtitle = MovieCategory.COMEDY.nameMovie
-                    }
-                    MovieCategory.ACTION -> {
-                        toolbar.subtitle = MovieCategory.ACTION.nameMovie
-                        viewModel.getMovieListFromServer(MovieCategory.ACTION.nameMovie)
-//                        viewModel.getMovieFromLocalSource(MovieCategory.ACTION)
-                    }
-                    MovieCategory.FANTASTIC -> {
-                        viewModel.getMovieListFromServer(MovieCategory.FANTASTIC.nameMovie)
-                        toolbar.subtitle = MovieCategory.FANTASTIC.nameMovie
-//                        viewModel.getMovieFromLocalSource(MovieCategory.FANTASTIC)
-                    }
-                    MovieCategory.MULT -> {
-                        toolbar.subtitle = MovieCategory.MULT.nameMovie
-//                        viewModel.getMovieFromLocalSource(MovieCategory.MULT)
-                    }
-                }
+            val isShort = arguments?.getBoolean("keyBoolean")
+            val keyString = arguments?.getString("keyString")
+//      ?.let {
+//            arguments?.getParcelable<MovieCategory>(BUNDLE_EXTRA)?.let {
+            if (keyString != null && isShort != null) {
+                viewModel.getMovieListFromServer(keyString, isShort)
+                toolbar.subtitle = keyString
             }
         }
     }
@@ -85,6 +68,15 @@ class ListFragment : Fragment() {
             .inflate(R.menu.popup_menu)
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
+                R.id.menu_favourites -> {
+                    parentFragmentManager.apply {
+                        beginTransaction()
+                            .add(R.id.container, FavouriteFragment.newInstance())
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                    true
+                }
                 R.id.popup_menu_movie_comedy -> {
                     changeMovieCategory = MovieCategory.COMEDY
                     viewModel.getMovieFromLocalSource(MovieCategory.COMEDY)
@@ -133,6 +125,7 @@ class ListFragment : Fragment() {
                             val bundle = Bundle().apply {
                                 putParcelable(DetailsFragment.BUNDLE_EXTRA, movie)
                             }
+
                             manager.beginTransaction()
                                 .add(R.id.container, DetailsFragment.newInstance(bundle))
                                 .addToBackStack("")
@@ -181,6 +174,7 @@ class ListFragment : Fragment() {
 
     companion object {
         const val BUNDLE_EXTRA = "movieCat"
+        const val BUNDLE_EXTRA_SHORT = "shortLenght"
 
         fun newInstance(bundle: Bundle): ListFragment {
             val fragment = ListFragment()
