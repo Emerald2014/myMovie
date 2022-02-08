@@ -1,6 +1,6 @@
 package ru.kudesnik.mymovie.ui.content_provider
 
-import android.app.Instrumentation
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Bundle
@@ -8,15 +8,13 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.ContentProviderFragmentBinding
-import java.util.jar.Manifest
-
-private const val REQUEST_CODE = 42
 
 class ContentProviderFragment : Fragment() {
 
@@ -26,7 +24,7 @@ class ContentProviderFragment : Fragment() {
     private val permissionResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-//                getContacts()
+                getContacts()
             } else {
                 Toast.makeText(
                     context, getString(R.string.need_permissions_to_read_contacts),
@@ -62,7 +60,7 @@ class ContentProviderFragment : Fragment() {
                     android.Manifest.permission.READ_CONTACTS
                 ) -> {
                     //доступ к контактам на телефоне есть
-//                    getContacts()
+                    getContacts()
                 }
                 else -> {
                     //Запрашиваем разрешение
@@ -72,7 +70,8 @@ class ContentProviderFragment : Fragment() {
         }
     }
 
-    /*private fun getContacts() {
+    @SuppressLint("Range")
+    private fun getContacts() {
         context?.let { nonNullContext ->
             //Отправляем запрос на получение контактов и получаем ответ в виде Cursor'a
             val cursorWithContacts: Cursor? = nonNullContext.contentResolver.query(
@@ -94,11 +93,17 @@ class ContentProviderFragment : Fragment() {
             }
             cursorWithContacts?.close()
         }
-    }*/
+    }
+
+    private fun addView(name: String) = with(binding) {
+        containerForContacts.addView(TextView(requireContext()).apply {
+            text = name
+            textSize = resources.getDimension(R.dimen.main_container_text_size)
+        })
+    }
 
     private fun requestPermission() {
         permissionResult.launch(android.Manifest.permission.READ_CONTACTS)
-//        requestPermissions(arrayOf(android.Manifest.permission.READ_CONTACTS), REQUEST_CODE)
     }
 
     companion object {
