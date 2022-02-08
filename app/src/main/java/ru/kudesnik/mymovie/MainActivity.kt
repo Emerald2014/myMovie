@@ -7,8 +7,8 @@ import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kudesnik.mymovie.databinding.MainActivityWebviewBinding
+import ru.kudesnik.mymovie.ui.content_provider.ContentProviderFragment
 //import ru.kudesnik.mymovie.ui.details.DetailsViewModel
 import ru.kudesnik.mymovie.ui.favourite.FavouriteFragment
 import ru.kudesnik.mymovie.ui.history.HistoryFragment
@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_history -> {
                 openFragment(HistoryFragment.newInstance())
+                true
+            }
+            R.id.menu_content_provider -> {
+                openFragment(ContentProviderFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)
