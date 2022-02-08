@@ -17,6 +17,7 @@ class RepositoryImpl() : Repository {
             MovieRepo.api.getMovie(id, NetworkUtils.FIELD_ID, NetworkUtils.TOKEN).execute().body()
 //        Log.i("MyResult2", MovieRepo.api)
         return Movie(
+            id = dto?.id ?: 5,
             name = dto?.name ?: "пусто",
             rating = dto?.rating?.kp ?: 0.0f,
             year = dto?.year ?: 1900,
@@ -91,7 +92,7 @@ class RepositoryImpl() : Repository {
 
     private fun convertMovieToEntity(movie: Movie): FavouriteEntity {
         return FavouriteEntity(
-            0,
+            movie.id,
             movie.name,
             movie.movieLength,
             movie.poster,
@@ -111,22 +112,24 @@ class RepositoryImpl() : Repository {
     private fun convertHistoryEntityToMovie(entityList: List<HistoryEntity>): List<Movie> {
         return entityList.map {
             Movie(
-                it.idEntity,
-                it.nameMovieEntity,
-                it.ratingMovieEntity,
-                it.commentMovieEntity
+                id = it.idEntity,
+                name = it.nameMovieEntity,
+                movieLength = it.durationMovieEntity,
+                poster = it.posterMovieEntity,
+                rating = it.ratingMovieEntity,
+                comment = it.commentMovieEntity
             )
         }
     }
 
     private fun convertMovieToHistoryEntity(movie: Movie): HistoryEntity {
         return HistoryEntity(
-            0,
-            movie.name,
-            movie.movieLength,
-            movie.poster,
-            movie.rating,
-            movie.comment
+            idEntity = movie.id,
+            nameMovieEntity = movie.name,
+            durationMovieEntity = movie.movieLength,
+            posterMovieEntity = movie.poster,
+            ratingMovieEntity = movie.rating,
+            commentMovieEntity = movie.comment
         )
     }
 

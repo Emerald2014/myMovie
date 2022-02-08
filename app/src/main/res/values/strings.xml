@@ -13,4 +13,8 @@
     <string name="genres_label_text">Жанры</string>
     <string name="short_movie_lenght"><![CDATA[Короткометражка (< 50 мин)]]></string>
     <string name="comment">Комментарий:</string>
+    <string name="contacts">Контакты</string>
+    <string name="favourite">Избранное</string>
+    <string name="history">История</string>
+    <string name="need_permissions_to_read_contacts">Нужно разрешение на чтение контактов</string>
 </resources>

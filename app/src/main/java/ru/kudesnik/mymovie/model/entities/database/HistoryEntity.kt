@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class HistoryEntity(
-    @PrimaryKey(autoGenerate = true) val idEntity: Int,
+//    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false) val idEntity: Int,
     val nameMovieEntity: String,
     val durationMovieEntity: Int,
     val posterMovieEntity: String,

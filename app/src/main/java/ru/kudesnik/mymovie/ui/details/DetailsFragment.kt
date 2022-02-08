@@ -34,6 +34,7 @@ class DetailsFragment : Fragment() {
         addToFavourites()
         arguments?.getParcelable<Movie>(BUNDLE_EXTRA)?.let {
             with(binding) {
+                idMovie.text = it.id.toString()
                 nameMovie.text = it.name
                 ratingMovie.text = it.rating.toString()
                 yearMovie.text = it.year.toString()
@@ -50,6 +51,7 @@ class DetailsFragment : Fragment() {
                         }
                         is AppState.Success -> {
                             mainView.visibility = View.VISIBLE
+                            idMovie.text = appState.movieData[0].id.toString()
                             nameMovie.text = appState.movieData[0].name
                             ratingMovie.text = appState.movieData[0].rating.toString()
                             yearMovie.text = appState.movieData[0].year.toString()
