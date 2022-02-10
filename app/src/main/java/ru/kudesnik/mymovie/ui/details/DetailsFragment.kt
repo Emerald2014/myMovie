@@ -41,7 +41,7 @@ class DetailsFragment : Fragment() {
                 directorMovie.text = it.director
                 genresMovie.text = it.category
 
-                viewModel.movieLiveData.observe(viewLifecycleOwner, { appState ->
+                viewModel.movieLiveData.observe(viewLifecycleOwner) { appState ->
                     when (appState) {
                         is AppState.Error -> {
                             mainView.visibility = View.INVISIBLE
@@ -63,7 +63,7 @@ class DetailsFragment : Fragment() {
                             }
                         }
                     }
-                })
+                }
             }
             viewModel.loadData(it.id)
         }
