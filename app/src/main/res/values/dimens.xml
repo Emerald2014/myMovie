@@ -4,4 +4,14 @@
     <dimen name="text_size">24sp</dimen>
     <dimen name="margin_vertical">16dp</dimen>
     <dimen name="main_container_text_size">10sp</dimen>
+    <dimen name="margin_default">20dp</dimen>
+    <dimen name="text_size_default">10sp</dimen>
+    <dimen name="text_size_default2">18sp</dimen>
+    <dimen name="margin_default_small">10dp</dimen>
+    <dimen name="width_btn">60dp</dimen>
+    <dimen name="height_poster">100dp</dimen>
+    <dimen name="width_poster">67dp</dimen>
+    <dimen name="star_dimension">50dp</dimen>
+    <dimen name="max_height_category">200dp</dimen>
+    <dimen name="text_size_big">30sp</dimen>
 </resources>

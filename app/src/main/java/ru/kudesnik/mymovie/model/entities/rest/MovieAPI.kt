@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieKP
 import ru.kudesnik.mymovie.model.entities.rest.rest_entities.MovieListKP
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.PersonsKP
 
 
 interface MovieAPI {
@@ -34,6 +35,16 @@ interface MovieListAPI {
         @Query("token") token: String
     ): Call<MovieListKP>
 }
+
+interface PersonAPI {
+    @GET("person")
+    fun getPerson(
+        @Query("search") id: Int,
+        @Query("field") idLabel: String = "id",
+        @Query("token") token: String
+    ): Call<PersonsKP>
+}
+
 //URL("https://api.kinopoisk.dev/movie?search=${id}&field=id&token=ZQQ8GMN-TN54SGK-NB3MKEC-ZKB8V06")
 // URL("https://api.kinopoisk.dev/movie?
 // field=genres.name&search=${genres}&

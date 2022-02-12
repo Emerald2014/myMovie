@@ -1,4 +1,6 @@
 <resources>
+    <string name="google_map_key" translatable="false">AIzaSyD3sR5S8GQp0xMzCEg7UEEN-nm3jDv-VW8</string>
+
     <string name="app_name">Моя фильмотека</string>
     <string name="director_label_text">Режиссер фильма:</string>
     <string name="category_label_text">Категория фильма:</string>
@@ -17,4 +19,58 @@
     <string name="favourite">Избранное</string>
     <string name="history">История</string>
     <string name="need_permissions_to_read_contacts">Нужно разрешение на чтение контактов</string>
+
+    <string name="error_happened">Произошла ошибка</string>
+
+    <string name="threads">Потоки</string>
+
+    <string name="calculate">Рассчет</string>
+
+    <string name="in_main_thread">В главном потоке</string>
+
+
+    <string name="dialog_button_close">Закрыть</string>
+
+    <string name="dialog_title_no_gps">Доступ к геолокации закрыт</string>
+
+    <string name="dialog_message_no_gps">Разрешите доступ к геолокации, если хотите узнать погоду текущего места</string>
+
+    <string name="dialog_title_gps_turned_off">GPS отключён</string>
+
+    <string name="dialog_message_last_location_unknown">Местонахождение неизвестно. Включите GPS, если хотите получить погоду по текущему адресу</string>
+
+    <string name="dialog_message_last_known_location">Показана последняя известная локация. Включите GPS, если хотите обновить местонахождение</string>
+
+    <string name="dialog_rationale_title">Доступ к геолокации</string>
+
+    <string name="dialog_rationale_meaasge">Объяснение</string>
+
+    <string name="dialog_rationale_give_access">Предоставить доступ</string>
+
+    <string name="dialog_rationale_decline">Не надо</string>
+
+    <string name="dialog_address_title">Ваш адрес</string>
+
+    <string name="dialog_address_get_weather">Узнать погоду</string>
+
+    <string name="map">Местоположение</string>
+
+    <string name="map_mode">Режим карты</string>
+
+    <string name="normal">Нормальный</string>
+
+    <string name="satellites">Спутники</string>
+
+    <string name="terrain">Схема</string>
+
+    <string name="traffic">Трафик</string>
+
+    <string name="enter_query">Введите запрос</string>
+
+    <string name="search">Поиск</string>
+
+    <string name="start_marker">Старт</string>
+    <string name="google_maps">Карта</string>
+    <string name="movie_lenght">Продолжительность:</string>
+    <string name="year">Год:</string>
 </resources>

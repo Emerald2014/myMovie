@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
-        android:maxHeight="200dp"
+        android:maxHeight="@dimen/max_height_category"
         android:src="@drawable/ic_comedy" />
 
     <TextView
@@ -22,6 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         tools:text="@string/movie_category_text_action"
-        android:textSize="36sp"
+        android:textSize="@dimen/text_size_big"
         android:textStyle="bold" />
 </LinearLayout>

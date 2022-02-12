@@ -2,6 +2,8 @@ package ru.kudesnik.mymovie.model.repository
 
 import ru.kudesnik.mymovie.model.entities.Movie
 import ru.kudesnik.mymovie.model.entities.MovieCategory
+import ru.kudesnik.mymovie.model.entities.Person
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.PersonsKP
 
 interface Repository {
 
@@ -13,6 +15,8 @@ interface Repository {
 
     fun getMovieCategoryFromLocalStorage(): List<MovieCategory>
     fun getMovieListFromServer(genres: String, isShortMovieLength: Boolean): List<Movie>
+
+    fun getPersonFromServer(id: Int): Person
 
     fun saveEntity(movie: Movie)
     fun getAllFavourites(): List<Movie>

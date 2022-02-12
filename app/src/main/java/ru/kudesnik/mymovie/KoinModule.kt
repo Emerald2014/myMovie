@@ -8,6 +8,7 @@ import ru.kudesnik.mymovie.ui.details.DetailsViewModel
 import ru.kudesnik.mymovie.ui.favourite.FavouriteViewModel
 import ru.kudesnik.mymovie.ui.history.HistoryViewModel
 import ru.kudesnik.mymovie.ui.list.ListViewModel
+import ru.kudesnik.mymovie.ui.maps.MapsViewModel
 
 val appModule = module {
     single<Repository> { RepositoryImpl() }
@@ -16,4 +17,5 @@ val appModule = module {
     viewModel { DetailsViewModel(get()) }
     viewModel { FavouriteViewModel(get()) }
     viewModel { HistoryViewModel(get()) }
+    viewModel { MapsViewModel(get()) }
 }

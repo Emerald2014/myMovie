@@ -9,10 +9,17 @@ data class MovieKP(
     val persons: List<PersonsKP>,
     val poster: PosterKP,
     val movieLength: Int
-
 )
 
 data class GenresKP(val name: String)
 data class RatingKP(val kp: Float)
-data class PersonsKP(val enProfession: String = "director", val name: String)
+data class PersonsKP(
+    val id: Int,
+    val enProfession: String = "director",
+    val name: String,
+    val birthPlace: List<BirthPlace>,
+    val birthday: String
+)
+
 data class PosterKP(val url: String)
+data class BirthPlace(val value: String)

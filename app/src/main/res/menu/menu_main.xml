@@ -18,4 +18,16 @@
         android:icon="@drawable/ic_baseline_contact_phone_24"
         android:title="@string/contacts"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/my_position"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/map"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/google_maps"
+        android:icon="@drawable/ic_baseline_map_24"
+        android:title="@string/google_maps"
+        app:showAsAction="ifRoom"/>
 </menu>
