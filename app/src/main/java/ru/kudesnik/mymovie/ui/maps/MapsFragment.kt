@@ -23,8 +23,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.kudesnik.mymovie.R
 import ru.kudesnik.mymovie.databinding.FragmentMapsBinding
+import ru.kudesnik.mymovie.model.AppState
+import ru.kudesnik.mymovie.model.AppState.*
+import ru.kudesnik.mymovie.model.entities.Movie
+import ru.kudesnik.mymovie.ui.details.DetailsFragment
+import ru.kudesnik.mymovie.ui.details.DetailsViewModel
 import java.io.IOException
 import java.util.jar.Manifest
 
@@ -35,6 +41,8 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
     private val markers: ArrayList<Marker> = ArrayList()
     private var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: MapsViewModel by viewModel()
+
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
@@ -69,12 +77,34 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
-        initSearchByAddress()
-    }
 
+//        arguments?.getString(BUNDLE_EXTRA_MAPS)?.let {
+        arguments?.getInt(BUNDLE_EXTRA_MAPS)?.let {
+            val directorId = it
+          viewModel.loadPerson(it)
+            with(binding) {
+        viewModel.movieLiveData.observe(viewLifecycleOwner) { appState ->
+            when (appState) {
+                is AppState.SuccessPers ->{
+                    textAddress.text = appState.persData[0].birthday
+                    textAddress2.text = directorId.toString()
+                   searchAddress.setText(appState.persData[0].birthPlace)
+                    initSearchByAddress()
+
+                }
+                else -> {}
+            }
+
+
+                }
+            }
+
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -158,6 +188,11 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
 
     companion object {
         fun newInstance() = MapsFragment()
+        const val BUNDLE_EXTRA_MAPS = "movie"
+        fun newInstance(bundle: Bundle): MapsFragment {
+            val fragment = MapsFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
-

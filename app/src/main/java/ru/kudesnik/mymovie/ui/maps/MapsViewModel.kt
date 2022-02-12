@@ -1,4 +1,4 @@
-package ru.kudesnik.mymovie.ui.details
+package ru.kudesnik.mymovie.ui.maps
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,21 +10,21 @@ import kotlinx.coroutines.withContext
 import ru.kudesnik.mymovie.model.AppState
 import ru.kudesnik.mymovie.model.repository.Repository
 
-
-class DetailsViewModel(private val repository: Repository) : ViewModel() {
+class MapsViewModel(private val repository: Repository) : ViewModel() {
     private val localeLiveData: MutableLiveData<AppState> = MutableLiveData()
     val movieLiveData: LiveData<AppState>
         get() {
             return localeLiveData
         }
 
-    fun loadData(id: Int) = with(viewModelScope) {
+    fun loadPerson(id: Int) = with(viewModelScope) {
         localeLiveData.value = AppState.Loading
-
         launch(Dispatchers.IO) {
-            val data = repository.getMoviesFromServer(id)
-            repository.saveHistoryEntity(data)
-            withContext(Dispatchers.Main) { localeLiveData.value = AppState.Success(listOf(data)) }
+            val dataPerson = repository.getPersonFromServer(id)
+            withContext(Dispatchers.Main) {
+                localeLiveData.value = AppState.SuccessPers(listOf(dataPerson))
+            }
+
         }
     }
 }

@@ -23,4 +23,14 @@ object MovieRepo {
 
         adapter.create(MovieListAPI::class.java)
     }
+
+    val apiPerson: PersonAPI by lazy {
+        val adapter = Retrofit.Builder()
+            .baseUrl(ApiUtils.baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(ApiUtils.getOkHTTPBuilder())
+            .build()
+
+        adapter.create(PersonAPI::class.java)
+    }
 }

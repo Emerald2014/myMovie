@@ -6,6 +6,7 @@ import ru.kudesnik.mymovie.model.entities.database.FavouriteEntity
 import ru.kudesnik.mymovie.model.entities.database.HistoryDatabase
 import ru.kudesnik.mymovie.model.entities.database.HistoryEntity
 import ru.kudesnik.mymovie.model.entities.rest.MovieRepo
+import ru.kudesnik.mymovie.model.entities.rest.rest_entities.PersonsKP
 import ru.kudesnik.mymovie.utils.NetworkUtils
 
 var shortMovieLength = ""
@@ -16,6 +17,10 @@ class RepositoryImpl() : Repository {
         val dto =
             MovieRepo.api.getMovie(id, NetworkUtils.FIELD_ID, NetworkUtils.TOKEN).execute().body()
 //        Log.i("MyResult2", MovieRepo.api)
+        val dtoPers =
+            MovieRepo.apiPerson.getPerson(id, token = NetworkUtils.TOKEN).execute().body()
+//        Log.i("MyResult2", MovieRepo.api)
+
         return Movie(
             id = dto?.id ?: 5,
             name = dto?.name ?: "пусто",
@@ -23,7 +28,10 @@ class RepositoryImpl() : Repository {
             year = dto?.year ?: 1900,
             director = dto?.persons?.get(0)?.name ?: "Режиссер",
             category = dto?.genres?.get(0)?.name ?: "Комедия",
-            poster = dto?.poster?.url ?: ""
+            poster = dto?.poster?.url ?: "",
+            birthPlace = dtoPers?.birthPlace?.get(0)?.value ?: "USA",
+            birthdayDirector = dtoPers?.birthday ?: "birthday",
+            directorId = dto?.persons?.get(0)?.id ?: 0
 
         )
     }
@@ -58,6 +66,19 @@ class RepositoryImpl() : Repository {
             }
         }
         return movieList
+    }
+
+    override fun getPersonFromServer(id: Int): Person {
+        val dto =
+            MovieRepo.apiPerson.getPerson(id, token = NetworkUtils.TOKEN).execute().body()
+//        Log.i("MyResult2", MovieRepo.api)
+        return Person(
+            id = dto?.id ?: 5,
+            name = dto?.name ?: "пусто",
+
+            birthPlace = dto?.birthPlace?.get(0)?.value ?: "USA",
+            birthday = dto?.birthday ?: "birthday"
+        )
     }
 
     override fun getMoviesFromLocalStorageComedy() = getMoviesCategoryComedy()

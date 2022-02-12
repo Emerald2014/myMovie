@@ -6,15 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E0FFFF"
-    tools:context=".ui.details.DetailsFragment">
+    android:clickable="true"
+
+    tools:context=".ui.details.DetailsFragment"
+    android:focusable="true">
 
     <TextView
+        android:id="@+id/id_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:visibility="invisible"
-        android:id="@+id/id_movie"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/poster"
@@ -25,8 +28,7 @@ app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/no_poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
- />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -110,6 +112,39 @@ app:layout_constraintTop_toTopOf="parent"
 
         />
 
+    <TextView
+        android:id="@+id/birthPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/genresMovieLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/genresMovieLabel"
+        app:layout_constraintBottom_toTopOf="@id/birthPlace"
+
+        />
+
+    <TextView
+        android:id="@+id/id_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/genresMovieLabel"
+        app:layout_constraintBottom_toTopOf="@id/birthday"
+
+        />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -132,13 +167,13 @@ app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FABFavourites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="20dp"
-        android:src="@drawable/yellow_star"
         android:backgroundTint="@color/yellow"
-        android:id="@+id/FABFavourites"/>
+        android:src="@drawable/yellow_star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

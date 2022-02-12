@@ -13,7 +13,10 @@ data class Movie(
     val year: Int = 2000,
     val poster: String = "Будет позже",
     val movieLength: Int = 0,
-    var comment: String = "Комментарий"
+    var comment: String = "Комментарий",
+    val birthPlace: String = "USA",
+    val birthdayDirector: String = "birthday",
+    val directorId: Int = 31245
 ) : Parcelable {
 }
 
