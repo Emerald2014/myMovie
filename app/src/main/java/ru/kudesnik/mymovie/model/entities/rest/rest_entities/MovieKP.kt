@@ -9,7 +9,6 @@ data class MovieKP(
     val persons: List<PersonsKP>,
     val poster: PosterKP,
     val movieLength: Int
-
 )
 
 data class GenresKP(val name: String)

@@ -24,7 +24,6 @@ class MapsViewModel(private val repository: Repository) : ViewModel() {
             withContext(Dispatchers.Main) {
                 localeLiveData.value = AppState.SuccessPers(listOf(dataPerson))
             }
-
         }
     }
 }

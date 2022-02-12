@@ -14,11 +14,8 @@ data class Movie(
     val poster: String = "Будет позже",
     val movieLength: Int = 0,
     var comment: String = "Комментарий",
-    val birthPlace: String = "USA",
-    val birthdayDirector: String = "birthday",
     val directorId: Int = 31245
-) : Parcelable {
-}
+) : Parcelable
 
 fun getMoviesCategoryComedy() = listOf(
     Movie(0, "Комедия 1", 8.1f, "Комедия", "Режиссер 1", 2001),

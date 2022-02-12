@@ -43,7 +43,6 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
     private val binding get() = _binding!!
     private val viewModel: MapsViewModel by viewModel()
 
-
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
@@ -58,8 +57,6 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
         ) {
             map.isMyLocationEnabled = true
         }
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,29 +79,22 @@ class MapsFragment : Fragment(), CoroutineScope by MainScope() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-//        arguments?.getString(BUNDLE_EXTRA_MAPS)?.let {
         arguments?.getInt(BUNDLE_EXTRA_MAPS)?.let {
-            val directorId = it
-          viewModel.loadPerson(it)
+            viewModel.loadPerson(it)
             with(binding) {
-        viewModel.movieLiveData.observe(viewLifecycleOwner) { appState ->
-            when (appState) {
-                is AppState.SuccessPers ->{
-                    textAddress.text = appState.persData[0].birthday
-                    textAddress2.text = directorId.toString()
-                   searchAddress.setText(appState.persData[0].birthPlace)
-                    initSearchByAddress()
-
-                }
-                else -> {}
-            }
-
-
+                viewModel.movieLiveData.observe(viewLifecycleOwner) { appState ->
+                    when (appState) {
+                        is AppState.SuccessPers -> {
+                            searchAddress.setText(appState.persData[0].birthPlace)
+                            initSearchByAddress()
+                        }
+                        else -> {}
+                    }
                 }
             }
-
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -45,8 +45,7 @@ class DetailsFragment : Fragment() {
                 yearMovie.text = it.year.toString()
                 directorMovie.text = it.director
                 genresMovie.text = it.category
-                birthPlace.text = it.birthPlace
-                birthday.text = it.birthdayDirector
+
 
                 viewModel.movieLiveData.observe(viewLifecycleOwner) { appState ->
                     when (appState) {
@@ -64,25 +63,20 @@ class DetailsFragment : Fragment() {
                             yearMovie.text = appState.movieData[0].year.toString()
                             directorMovie.text = appState.movieData[0].director
                             genresMovie.text = appState.movieData[0].category
-                            idDirector.text = appState.movieData[0].directorId.toString()
                             poster.load(appState.movieData[0].poster) {
                                 crossfade(true)
                                 placeholder(R.drawable.no_poster)
                             }
-                            birthPlace.text = appState.movieData[0].birthPlace
-                            birthday.text = appState.movieData[0].birthdayDirector
+
                             directorMovie.setOnClickListener(object : View.OnClickListener {
                                 override fun onClick(v: View?) {
-
-                                    Toast.makeText(
-                                        requireContext(),
-                                        "Открываю место рождения ${appState.movieData[0].directorId.toString()}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
                                     val manager = activity?.supportFragmentManager
                                     manager?.let { manager ->
                                         val bundle = Bundle().apply {
-                                            putInt(BUNDLE_EXTRA_MAPS, appState.movieData[0].directorId)
+                                            putInt(
+                                                BUNDLE_EXTRA_MAPS,
+                                                appState.movieData[0].directorId
+                                            )
                                         }
 
                                         manager.beginTransaction()
@@ -126,10 +120,6 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    interface OnItemViewClickListener {
-        fun onItemViewClick(birthPlace: String)
-    }
-
     companion object {
         const val BUNDLE_EXTRA = "movie"
         fun newInstance(bundle: Bundle): DetailsFragment {
@@ -138,7 +128,5 @@ class DetailsFragment : Fragment() {
             return fragment
         }
     }
-
-
 }
 

@@ -13,13 +13,8 @@ var shortMovieLength = ""
 
 class RepositoryImpl() : Repository {
     override fun getMoviesFromServer(id: Int): Movie {
-//        val dto = NetworkUtils.loadMovie(id)
         val dto =
             MovieRepo.api.getMovie(id, NetworkUtils.FIELD_ID, NetworkUtils.TOKEN).execute().body()
-//        Log.i("MyResult2", MovieRepo.api)
-        val dtoPers =
-            MovieRepo.apiPerson.getPerson(id, token = NetworkUtils.TOKEN).execute().body()
-//        Log.i("MyResult2", MovieRepo.api)
 
         return Movie(
             id = dto?.id ?: 5,
@@ -29,10 +24,7 @@ class RepositoryImpl() : Repository {
             director = dto?.persons?.get(0)?.name ?: "Режиссер",
             category = dto?.genres?.get(0)?.name ?: "Комедия",
             poster = dto?.poster?.url ?: "",
-            birthPlace = dtoPers?.birthPlace?.get(0)?.value ?: "USA",
-            birthdayDirector = dtoPers?.birthday ?: "birthday",
             directorId = dto?.persons?.get(0)?.id ?: 0
-
         )
     }
 
@@ -47,7 +39,6 @@ class RepositoryImpl() : Repository {
             shortMovieLength = shortMovieLength
         )
             .execute().body()
-//        val dto = NetworkUtils.loadMovieList(genres)
         val movieList = mutableListOf<Movie>()
 
         if (dto != null) {

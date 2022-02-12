@@ -71,4 +71,6 @@
 
     <string name="start_marker">Старт</string>
     <string name="google_maps">Карта</string>
+    <string name="movie_lenght">Продолжительность:</string>
+    <string name="year">Год:</string>
 </resources>

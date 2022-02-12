@@ -12,7 +12,7 @@
         android:id="@+id/ll_comedy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/margin_default_small"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@id/ll_action"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:maxHeight="200dp"
+            android:maxHeight="@dimen/max_height_category"
             android:src="@drawable/ic_comedy" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/movie_category_text_comedy"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_big"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -41,7 +41,7 @@
         android:id="@+id/ll_action"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/margin_default_small"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_comedy"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:maxHeight="200dp"
+            android:maxHeight="@dimen/max_height_category"
             android:src="@drawable/ic_action" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
             android:text="@string/movie_category_text_action"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_big"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -69,7 +69,7 @@
         android:id="@+id/ll_fantastic"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/margin_default_small"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@id/ll_mult"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:maxHeight="200dp"
+            android:maxHeight="@dimen/max_height_category"
             android:src="@drawable/ic_fantastic" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/movie_category_text_fantastic"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_big"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -97,7 +97,7 @@
         android:id="@+id/ll_mult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/margin_default_small"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/ll_fantastic"
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:maxHeight="200dp"
+            android:maxHeight="@dimen/max_height_category"
             android:src="@drawable/ic_mult" />
 
         <TextView
@@ -117,7 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/movie_category_text_mult"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_big"
             android:textStyle="bold" />
     </LinearLayout>
 
