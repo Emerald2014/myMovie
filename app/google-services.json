@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1019384765058",
+    "project_id": "my-movie-340719",
+    "storage_bucket": "my-movie-340719.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019384765058:android:739790123688a95573f29b",
+        "android_client_info": {
+          "package_name": "ru.kudesnik.mymovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019384765058-gh44ehv0ho7iubtgn6vfqdg7d3vb6toh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVUKY80jSRg_SM-tPdEm8juVFMufIHn2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019384765058-gh44ehv0ho7iubtgn6vfqdg7d3vb6toh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

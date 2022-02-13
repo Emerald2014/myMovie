@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.*
 import ru.kudesnik.mymovie.ui.content_provider.ContentProviderFragment
 //import ru.kudesnik.mymovie.ui.details.DetailsViewModel
@@ -66,6 +67,12 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
+
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+        }
+        val ticketId = intent.extras?.getString("ticketId", "0")
+//        Toast.makeText(this, ticketId, Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
